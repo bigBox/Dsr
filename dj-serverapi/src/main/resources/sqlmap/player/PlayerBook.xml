@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerBook">
+	<resultMap id="playerBookResultMap"
+		class="com.dj.domain.entity.player.PlayerBook">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="type" column="type" />
+		<result property="bookID" column="bookID" />
+		<result property="itemID" column="itemID" />
+		<result property="state" column="state" />
+		<result property="reward" column="reward" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerBook">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="and" property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="and" property="bookID"> bookID = #bookID# </isNotNull>
+			<isNotNull prepend="and" property="state"> `state` = #state# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerBook">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerBook"
+		parameterClass="com.dj.domain.entity.player.PlayerBook">
+		insert into player_book(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="type"> `type` </isNotNull>
+		<isNotNull prepend="," property="bookID"> bookID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="state"> `state` </isNotNull>
+		<isNotNull prepend="," property="reward"> reward </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="type"> #type# </isNotNull>
+		<isNotNull prepend="," property="bookID"> #bookID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="state"> #state# </isNotNull>
+		<isNotNull prepend="," property="reward"> #reward# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerBook">
+		delete from player_book
+		<include refid="queryByKeyPlayerBook" />
+	</delete>
+
+	<update id="updatePlayerBook"
+		parameterClass="com.dj.domain.entity.player.PlayerBook">
+		update player_book
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="," property="bookID"> bookID = #bookID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="state"> `state` = #state# </isNotNull>
+			<isNotNull prepend="," property="reward"> reward = #reward# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerBook" />
+	</update>
+
+	<select id="selectSinglePlayerBook"
+		resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,bookID
+		,itemID
+		,`state`
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_book
+		<include refid="queryByKeyPlayerBook" />
+	</select>
+
+	<select id="selectRecordsCountPlayerBook"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_book
+		<include refid="queryConditionPlayerBook" />
+	</select>
+
+	<select id="selectMultiPagingPlayerBook"
+		parameterClass="java.util.Map" resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,bookID
+		,itemID
+		,`state`
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_book
+		<include refid="queryConditionPlayerBook" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerBook"
+		parameterClass="java.util.Map" resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,bookID
+		,itemID
+		,`state`
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_book
+		<include refid="queryConditionPlayerBook" />
+	</select>
+
+	<select id="selectAllPlayerBook"
+		resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,bookID
+		,itemID
+		,`state`
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_book
+	</select>
+
+	<select id="selectSingleByParamsPlayerBook"
+			parameterClass="java.util.Map" resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,bookID
+		,itemID
+		,`state`
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_book
+		<include refid="queryConditionPlayerBook" />
+		limit 1
+	</select>
+</sqlMap>
+	

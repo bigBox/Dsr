@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerManufacture">
+	<resultMap id="playerManufactureResultMap"
+		class="com.dj.domain.entity.player.PlayerManufacture">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="factoryID" column="factoryID" />
+		<result property="recipeID" column="recipeID" />
+		<result property="makingTime" column="makingTime" />
+		<result property="startTime" column="startTime" />
+		<result property="state" column="state" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerManufacture">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="factoryID"> factoryID = #factoryID# </isNotNull>
+			<isNotNull prepend="and" property="recipeID"> recipeID = #recipeID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerManufacture">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerManufacture"
+		parameterClass="com.dj.domain.entity.player.PlayerManufacture">
+		insert into player_manufacture(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="factoryID"> factoryID </isNotNull>
+		<isNotNull prepend="," property="recipeID"> recipeID </isNotNull>
+		<isNotNull prepend="," property="makingTime"> makingTime </isNotNull>
+		<isNotNull prepend="," property="startTime"> startTime </isNotNull>
+		<isNotNull prepend="," property="state"> state </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="factoryID"> #factoryID# </isNotNull>
+		<isNotNull prepend="," property="recipeID"> #recipeID# </isNotNull>
+		<isNotNull prepend="," property="makingTime"> #makingTime# </isNotNull>
+		<isNotNull prepend="," property="startTime"> #startTime# </isNotNull>
+		<isNotNull prepend="," property="state"> #state# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerManufacture">
+		delete from player_manufacture
+		<include refid="queryByKeyPlayerManufacture" />
+	</delete>
+
+	<update id="updatePlayerManufacture"
+		parameterClass="com.dj.domain.entity.player.PlayerManufacture">
+		update player_manufacture
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="factoryID"> factoryID = #factoryID# </isNotNull>
+			<isNotNull prepend="," property="recipeID"> recipeID = #recipeID# </isNotNull>
+			<isNotNull prepend="," property="makingTime"> makingTime = #makingTime# </isNotNull>
+			<isNotNull prepend="," property="startTime"> startTime = #startTime# </isNotNull>
+			<isNotNull prepend="," property="state"> state = #state# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerManufacture" />
+	</update>
+
+	<select id="selectSinglePlayerManufacture"
+		resultMap="playerManufactureResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,recipeID
+		,makingTime
+		,startTime
+		,state
+		,createTime
+		,updateTime
+		from
+		player_manufacture
+		<include refid="queryByKeyPlayerManufacture" />
+	</select>
+
+	<select id="selectRecordsCountPlayerManufacture"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_manufacture
+		<include refid="queryConditionPlayerManufacture" />
+	</select>
+
+	<select id="selectMultiPagingPlayerManufacture"
+		parameterClass="java.util.Map" resultMap="playerManufactureResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,recipeID
+		,makingTime
+		,startTime
+		,state
+		,createTime
+		,updateTime
+		from
+		player_manufacture
+		<include refid="queryConditionPlayerManufacture" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerManufacture"
+		parameterClass="java.util.Map" resultMap="playerManufactureResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,recipeID
+		,makingTime
+		,startTime
+		,state
+		,createTime
+		,updateTime
+		from
+		player_manufacture
+		<include refid="queryConditionPlayerManufacture" />
+	</select>
+
+	<select id="selectAllPlayerManufacture"
+		resultMap="playerManufactureResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,recipeID
+		,makingTime
+		,startTime
+		,state
+		,createTime
+		,updateTime
+		from
+		player_manufacture
+	</select>
+
+	<select id="selectSingleByParamsPlayerManufacture"
+			parameterClass="java.util.Map" resultMap="playerManufactureResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,recipeID
+		,makingTime
+		,startTime
+		,state
+		,createTime
+		,updateTime
+		from player_manufacture
+		<include refid="queryConditionPlayerManufacture" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

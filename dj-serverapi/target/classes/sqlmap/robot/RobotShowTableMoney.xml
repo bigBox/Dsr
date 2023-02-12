@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RobotShowTableMoney">
+	<resultMap id="robotShowTableMoneyResultMap"
+		class="com.dj.domain.entity.robot.RobotShowTableMoney">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="title" column="title" />
+		<result property="col0Money" column="col0Money" />
+		<result property="col0Time" column="col0Time" />
+		<result property="col1Money" column="col1Money" />
+		<result property="col1Time" column="col1Time" />
+		<result property="col2Money" column="col2Money" />
+		<result property="col2Time" column="col2Time" />
+		<result property="col3Money" column="col3Money" />
+		<result property="col3Time" column="col3Time" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionRobotShowTableMoney">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="title"> title = #title# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyRobotShowTableMoney">
+		where id = #id#
+	</sql>
+
+	<insert id="insertRobotShowTableMoney"
+		parameterClass="com.dj.domain.entity.robot.RobotShowTableMoney">
+		insert into robot_showtable_money(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="title"> title </isNotNull>
+		<isNotNull prepend="," property="col0Money"> col0Money </isNotNull>
+		<isNotNull prepend="," property="col0Time"> col0Time </isNotNull>
+		<isNotNull prepend="," property="col1Money"> col1Money </isNotNull>
+		<isNotNull prepend="," property="col1Time"> col1Time </isNotNull>
+		<isNotNull prepend="," property="col2Money"> col2Money </isNotNull>
+		<isNotNull prepend="," property="col2Time"> col2Time </isNotNull>
+		<isNotNull prepend="," property="col3Money"> col3Money </isNotNull>
+		<isNotNull prepend="," property="col3Time"> col3Time </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="title"> #title# </isNotNull>
+		<isNotNull prepend="," property="col0Money"> #col0Money# </isNotNull>
+		<isNotNull prepend="," property="col0Time"> #col0Time# </isNotNull>
+		<isNotNull prepend="," property="col1Money"> #col1Money# </isNotNull>
+		<isNotNull prepend="," property="col1Time"> #col1Time# </isNotNull>
+		<isNotNull prepend="," property="col2Money"> #col2Money# </isNotNull>
+		<isNotNull prepend="," property="col2Time"> #col2Time# </isNotNull>
+		<isNotNull prepend="," property="col3Money"> #col3Money# </isNotNull>
+		<isNotNull prepend="," property="col3Time"> #col3Time# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteRobotShowTableMoney">
+		delete from robot_showtable_money
+		<include refid="queryByKeyRobotShowTableMoney" />
+	</delete>
+
+	<update id="updateRobotShowTableMoney"
+		parameterClass="com.dj.domain.entity.robot.RobotShowTableMoney">
+		update robot_showtable_money
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="title"> title = #title# </isNotNull>
+			<isNotNull prepend="," property="col0Money"> col0Money = #col0Money# </isNotNull>
+			<isNotNull prepend="," property="col0Time"> col0Time = #col0Time# </isNotNull>
+			<isNotNull prepend="," property="col1Money"> col1Money = #col1Money# </isNotNull>
+			<isNotNull prepend="," property="col1Time"> col1Time = #col1Time# </isNotNull>
+			<isNotNull prepend="," property="col2Money"> col2Money = #col2Money# </isNotNull>
+			<isNotNull prepend="," property="col2Time"> col2Time = #col2Time# </isNotNull>
+			<isNotNull prepend="," property="col3Money"> col3Money = #col3Money# </isNotNull>
+			<isNotNull prepend="," property="col3Time"> col3Time = #col3Time# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyRobotShowTableMoney" />
+	</update>
+
+	<select id="selectSingleRobotShowTableMoney"
+		resultMap="robotShowTableMoneyResultMap">
+		select
+		id
+		,roleID
+		,title
+		,col0Money
+		,col0Time
+		,col1Money
+		,col1Time
+		,col2Money
+		,col2Time
+		,col3Money
+		,col3Time
+		,createTime
+		,updateTime
+		from
+		robot_showtable_money
+		<include refid="queryByKeyRobotShowTableMoney" />
+	</select>
+
+	<select id="selectRecordsCountRobotShowTableMoney"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from robot_showtable_money
+		<include refid="queryConditionRobotShowTableMoney" />
+	</select>
+
+	<select id="selectMultiPagingRobotShowTableMoney"
+		parameterClass="java.util.Map" resultMap="robotShowTableMoneyResultMap">
+		select
+		id
+		,roleID
+		,title
+		,col0Money
+		,col0Time
+		,col1Money
+		,col1Time
+		,col2Money
+		,col2Time
+		,col3Money
+		,col3Time
+		,createTime
+		,updateTime
+		from
+		robot_showtable_money
+		<include refid="queryConditionRobotShowTableMoney" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiRobotShowTableMoney"
+		parameterClass="java.util.Map" resultMap="robotShowTableMoneyResultMap">
+		select
+		id
+		,roleID
+		,title
+		,col0Money
+		,col0Time
+		,col1Money
+		,col1Time
+		,col2Money
+		,col2Time
+		,col3Money
+		,col3Time
+		,createTime
+		,updateTime
+		from
+		robot_showtable_money
+		<include refid="queryConditionRobotShowTableMoney" />
+	</select>
+
+	<select id="selectAllRobotShowTableMoney"
+		resultMap="robotShowTableMoneyResultMap">
+		select
+		id
+		,roleID
+		,title
+		,col0Money
+		,col0Time
+		,col1Money
+		,col1Time
+		,col2Money
+		,col2Time
+		,col3Money
+		,col3Time
+		,createTime
+		,updateTime
+		from
+		robot_showtable_money
+	</select>
+
+	<select id="selectSingleByParamsRobotShowTableMoney"
+			parameterClass="java.util.Map" resultMap="robotShowTableMoneyResultMap">
+		select
+		id
+		,roleID
+		,title
+		,col0Money
+		,col0Time
+		,col1Money
+		,col1Time
+		,col2Money
+		,col2Time
+		,col3Money
+		,col3Time
+		,createTime
+		,updateTime
+		from
+		robot_showtable_money
+		<include refid="queryConditionRobotShowTableMoney" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

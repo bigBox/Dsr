@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerAccount">
+	<resultMap id="playerAccountResultMap"
+		class="com.dj.domain.entity.player.PlayerAccount">
+		<result property="id" column="id" />
+		<result property="account" column="account" />
+		<result property="nickname" column="nickname" />
+		<result property="password" column="password" />
+		<result property="channel" column="channel" />
+		<result property="lastLoginIp" column="lastLoginIp" />
+		<result property="lastLoginTime" column="lastLoginTime" />
+		<result property="registerIp" column="registerIp" />
+		<result property="registerTime" column="registerTime" />
+		<result property="name" column="name" />
+		<result property="idCard" column="idCard" />
+		<result property="age" column="age" />
+		<result property="ai" column="ai" />
+		<result property="pi" column="pi" />
+		<result property="si" column="si" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerAccount">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="account"> account = #account# </isNotNull>
+			<isNotNull prepend="and" property="name"> `name` = #name# </isNotNull>
+			<isNotNull prepend="and" property="idCard"> idCard = #idCard# </isNotNull>
+			<isNotNull prepend="and" property="ai"> ai = #ai# </isNotNull>
+			<isNotNull prepend="and" property="pi"> pi = #pi# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerAccount">
+		where account = #account#
+	</sql>
+
+	<insert id="insertPlayerAccount"
+		parameterClass="com.dj.domain.entity.player.PlayerAccount">
+		insert into player_account(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="account"> account </isNotNull>
+		<isNotNull prepend="," property="password"> password </isNotNull>
+		<isNotNull prepend="," property="nickname"> nickname </isNotNull>
+		<isNotNull prepend="," property="channel"> channel </isNotNull>
+		<isNotNull prepend="," property="lastLoginIp"> lastLoginIp </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> lastLoginTime </isNotNull>
+		<isNotNull prepend="," property="registerIp"> registerIp </isNotNull>
+		<isNotNull prepend="," property="registerTime"> registerTime </isNotNull>
+		<isNotNull prepend="," property="name"> `name` </isNotNull>
+		<isNotNull prepend="," property="idCard"> idCard </isNotNull>
+		<isNotNull prepend="," property="age"> age </isNotNull>
+		<isNotNull prepend="," property="ai"> ai </isNotNull>
+		<isNotNull prepend="," property="pi"> pi </isNotNull>
+		<isNotNull prepend="," property="si"> si </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="account"> #account# </isNotNull>
+		<isNotNull prepend="," property="password"> #password# </isNotNull>
+		<isNotNull prepend="," property="nickname"> #nickname# </isNotNull>
+		<isNotNull prepend="," property="channel"> #channel# </isNotNull>
+		<isNotNull prepend="," property="lastLoginIp"> #lastLoginIp# </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> #lastLoginTime# </isNotNull>
+		<isNotNull prepend="," property="registerIp"> #registerIp# </isNotNull>
+		<isNotNull prepend="," property="registerTime"> #registerTime# </isNotNull>
+		<isNotNull prepend="," property="name"> #name# </isNotNull>
+		<isNotNull prepend="," property="idCard"> #idCard# </isNotNull>
+		<isNotNull prepend="," property="age"> #age# </isNotNull>
+		<isNotNull prepend="," property="ai"> #ai# </isNotNull>
+		<isNotNull prepend="," property="pi"> #pi# </isNotNull>
+		<isNotNull prepend="," property="si"> #si# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerAccount">
+		delete from player_account
+		<include refid="queryByKeyPlayerAccount" />
+	</delete>
+
+	<update id="updatePlayerAccount"
+		parameterClass="com.dj.domain.entity.player.PlayerAccount">
+		update player_account
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="account"> account = #account# </isNotNull>
+			<isNotNull prepend="," property="password"> `password` = #password# </isNotNull>
+			<isNotNull prepend="," property="nickname"> nickname = #nickname# </isNotNull>
+			<isNotNull prepend="," property="channel"> channel = #channel# </isNotNull>
+			<isNotNull prepend="," property="lastLoginIp"> lastLoginIp = #lastLoginIp# </isNotNull>
+			<isNotNull prepend="," property="lastLoginTime"> lastLoginTime = #lastLoginTime# </isNotNull>
+			<isNotNull prepend="," property="registerIp"> registerIp = #registerIp# </isNotNull>
+			<isNotNull prepend="," property="registerTime"> registerTime = 	#registerTime# </isNotNull>
+			<isNotNull prepend="," property="name"> `name` = 	#name# </isNotNull>
+			<isNotNull prepend="," property="idCard"> idCard = 	#idCard# </isNotNull>
+			<isNotNull prepend="," property="age"> age = #age# </isNotNull>
+			<isNotNull prepend="," property="ai"> ai = 	#ai# </isNotNull>
+			<isNotNull prepend="," property="pi"> pi = 	#pi# </isNotNull>
+			<isNotNull prepend="," property="si"> si = 	#si# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerAccount" />
+	</update>
+
+	<select id="selectSinglePlayerAccount" resultMap="playerAccountResultMap">
+		select
+		id
+		,account
+		,`password`
+		,nickname
+		,channel
+		,lastLoginIp
+		,lastLoginTime
+		,registerIp
+		,registerTime
+		,`name`
+		,idCard
+		,age
+		,ai
+		,pi
+		,si
+		from player_account
+		<include refid="queryByKeyPlayerAccount" />
+	</select>
+
+	<select id="selectRecordsCountPlayerAccount"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_account
+		<include refid="queryConditionPlayerAccount" />
+	</select>
+
+	<select id="selectMultiPagingPlayerAccount"
+		parameterClass="java.util.Map" resultMap="playerAccountResultMap">
+		select
+		id
+		,account
+		,`password`
+		,nickname
+		,channel
+		,lastLoginIp
+		,lastLoginTime
+		,registerIp
+		,registerTime
+		,`name`
+		,idCard
+		,age
+		,ai
+		,pi
+		,si
+		from player_account
+		<include refid="queryConditionPlayerAccount" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerAccount"
+		parameterClass="java.util.Map" resultMap="playerAccountResultMap">
+		select
+		id
+		,account
+		,`password`
+		,nickname
+		,channel
+		,lastLoginIp
+		,lastLoginTime
+		,registerIp
+		,registerTime
+		,`name`
+		,idCard
+		,age
+		,ai
+		,pi
+		,si
+		from player_account
+		<include refid="queryConditionPlayerAccount" />
+	</select>
+
+	<select id="selectAllPlayerAccount" resultMap="playerAccountResultMap">
+		select
+		id
+		,account
+		,`password`
+		,nickname
+		,channel
+		,lastLoginIp
+		,lastLoginTime
+		,registerIp
+		,registerTime
+		,`name`
+		,idCard
+		,age
+		,ai
+		,pi
+		,si
+		from player_account
+	</select>
+
+	<select id="selectSingleByParamsPlayerAccount"
+			parameterClass="java.util.Map" resultMap="playerAccountResultMap">
+		select
+		id
+		,account
+		,`password`
+		,nickname
+		,channel
+		,lastLoginIp
+		,lastLoginTime
+		,registerIp
+		,registerTime
+		,`name`
+		,idCard
+		,age
+		,ai
+		,pi
+		,si
+		from player_account
+		<include refid="queryConditionPlayerAccount" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

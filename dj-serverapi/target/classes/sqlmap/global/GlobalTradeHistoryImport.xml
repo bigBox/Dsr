@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GlobalTradeHistoryImport">
+	<resultMap id="globalTradeHistoryImportResultMap"
+		class="com.dj.domain.entity.global.GlobalTradeHistoryImport">
+		<result property="id" column="id" />
+		<result property="itemID" column="itemID" />
+		<result property="date" column="date" />
+		<result property="startPrice" column="startPrice" />
+		<result property="endPrice" column="endPrice" />
+		<result property="highestPrice" column="highestPrice" />
+		<result property="lowestPrice" column="lowestPrice" />
+		<result property="turnover" column="turnover" />
+	</resultMap>
+
+	<sql id="queryConditionGlobalTradeHistoryImport">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="and" property="date"> `date` = #date#	</isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyGlobalTradeHistoryImport">
+		where id = #id#
+	</sql>
+
+	<insert id="insertGlobalTradeHistoryImport"
+		parameterClass="com.dj.domain.entity.global.GlobalTradeHistoryImport">
+		insert into global_trade_history_import(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="date"> `date` </isNotNull>
+		<isNotNull prepend="," property="startPrice"> startPrice </isNotNull>
+		<isNotNull prepend="," property="endPrice"> endPrice </isNotNull>
+		<isNotNull prepend="," property="highestPrice"> highestPrice </isNotNull>
+		<isNotNull prepend="," property="lowestPrice"> lowestPrice </isNotNull>
+		<isNotNull prepend="," property="turnover"> turnover </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="date"> #date# </isNotNull>
+		<isNotNull prepend="," property="startPrice"> #startPrice# </isNotNull>
+		<isNotNull prepend="," property="endPrice"> #endPrice# </isNotNull>
+		<isNotNull prepend="," property="highestPrice"> #highestPrice# </isNotNull>
+		<isNotNull prepend="," property="lowestPrice"> #lowestPrice# </isNotNull>
+		<isNotNull prepend="," property="turnover"> #turnover# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteGlobalTradeHistoryImport">
+		delete from global_trade_history_import
+		<include refid="queryByKeyGlobalTradeHistoryImport" />
+	</delete>
+
+	<update id="updateGlobalTradeHistoryImport"
+		parameterClass="com.dj.domain.entity.global.GlobalTradeHistoryImport">
+		update global_trade_history_import
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="itemID"> itemID =  #itemID# </isNotNull>
+			<isNotNull prepend="," property="date"> `date` = #date# </isNotNull>
+			<isNotNull prepend="," property="startPrice"> startPrice = #startPrice#	</isNotNull>
+			<isNotNull prepend="," property="endPrice"> endPrice = #endPrice# </isNotNull>
+			<isNotNull prepend="," property="highestPrice"> highestPrice = #highestPrice# </isNotNull>
+			<isNotNull prepend="," property="lowestPrice"> lowestPrice = #lowestPrice# </isNotNull>
+			<isNotNull prepend="," property="turnover"> turnover = #turnover# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyGlobalTradeHistoryImport" />
+	</update>
+
+	<select id="selectSingleGlobalTradeHistoryImport"
+		resultMap="globalTradeHistoryImportResultMap">
+		select
+		id
+		,itemID
+		,`date`
+		,startPrice
+		,endPrice
+		,highestPrice
+		,lowestPrice
+		,turnover
+		from
+		global_trade_history_import
+		<include refid="queryByKeyGlobalTradeHistoryImport" />
+	</select>
+
+	<select id="selectRecordsCountGlobalTradeHistoryImport"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from global_trade_history_import
+		<include refid="queryConditionGlobalTradeHistoryImport" />
+	</select>
+
+	<select id="selectMultiPagingGlobalTradeHistoryImport"
+		parameterClass="java.util.Map" resultMap="globalTradeHistoryImportResultMap">
+		select
+		id
+		,itemID
+		,`date`
+		,startPrice
+		,endPrice
+		,highestPrice
+		,lowestPrice
+		,turnover
+		from
+		global_trade_history_import
+		<include refid="queryConditionGlobalTradeHistoryImport" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiGlobalTradeHistoryImport"
+		parameterClass="java.util.Map" resultMap="globalTradeHistoryImportResultMap">
+		select
+		id
+		,itemID
+		,`date`
+		,startPrice
+		,endPrice
+		,highestPrice
+		,lowestPrice
+		,turnover
+		from
+		global_trade_history_import
+		<include refid="queryConditionGlobalTradeHistoryImport" />
+		order by date desc
+		<isNotNull prepend="" property="descTop"> limit #descTop# </isNotNull>
+	</select>
+
+	<select id="selectAllGlobalTradeHistoryImport"
+		resultMap="globalTradeHistoryImportResultMap">
+		select
+		id
+		,itemID
+		,`date`
+		,startPrice
+		,endPrice
+		,highestPrice
+		,lowestPrice
+		,turnover
+		from
+		global_trade_history_import
+	</select>
+
+	<select id="selectSingleByParamsGlobalTradeHistoryImport"
+			parameterClass="java.util.Map" resultMap="globalTradeHistoryImportResultMap">
+		select
+		id
+		,itemID
+		,`date`
+		,startPrice
+		,endPrice
+		,highestPrice
+		,lowestPrice
+		,turnover
+		from
+		global_trade_history_import
+		<include refid="queryConditionGlobalTradeHistoryImport" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

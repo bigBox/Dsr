@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RobotItem5">
+	<resultMap id="robotItemResultMap5"
+		class="com.dj.domain.entity.robot.item.RobotItem5">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="itemID" column="itemID" />
+		<result property="itemCount" column="itemCount" />
+		<result property="inVerifyCount" column="inVerifyCount" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionRobotItem5">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyRobotItem5">
+		where id = #id#
+	</sql>
+
+	<insert id="insertRobotItem5"
+		parameterClass="com.dj.domain.entity.robot.item.RobotItem5">
+		insert into robot_item5(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="itemCount"> itemCount </isNotNull>
+		<isNotNull prepend="," property="inVerifyCount"> inVerifyCount </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="itemCount"> #itemCount# </isNotNull>
+		<isNotNull prepend="," property="inVerifyCount"> #inVerifyCount#  </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteRobotItem5">
+		delete from robot_item5
+		<include refid="queryByKeyRobotItem5" />
+	</delete>
+
+	<update id="updateRobotItem5"
+		parameterClass="com.dj.domain.entity.robot.item.RobotItem5">
+		update robot_item5
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="itemCount"> itemCount = #itemCount# </isNotNull>
+			<isNotNull prepend="," property="inVerifyCount"> inVerifyCount = #inVerifyCount# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyRobotItem5" />
+	</update>
+
+	<select id="selectSingleRobotItem5" resultMap="robotItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from robot_item5
+		<include refid="queryConditionRobotItem5" />
+	</select>
+
+	<select id="selectRecordsCountRobotItem5"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from robot_item5
+		<include refid="queryConditionRobotItem5" />
+	</select>
+
+	<select id="selectMultiPagingRobotItem5"
+		parameterClass="java.util.Map" resultMap="robotItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from robot_item5
+		<include refid="queryConditionRobotItem5" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiRobotItem5"
+		parameterClass="java.util.Map" resultMap="robotItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from robot_item5
+		<include refid="queryConditionRobotItem5" />
+	</select>
+
+	<select id="selectAllRobotItem5" resultMap="robotItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from robot_item5
+	</select>
+
+	<select id="selectSingleByParamsRobotItem5"
+		parameterClass="java.util.Map" resultMap="robotItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from robot_item5
+		<include refid="queryConditionRobotItem5" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

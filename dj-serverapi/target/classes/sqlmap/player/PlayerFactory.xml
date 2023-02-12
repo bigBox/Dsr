@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerFactory">
+	<resultMap id="playerFactoryResultMap"
+		class="com.dj.domain.entity.player.PlayerFactory">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="factoryID" column="factoryID" />
+		<result property="showLevel" column="showLevel" />
+		<result property="pointX" column="pointX" />
+		<result property="pointY" column="pointY" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerFactory">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="factoryID"> factoryID = #factoryID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerFactory">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerFactory"
+		parameterClass="com.dj.domain.entity.player.PlayerFactory">
+		insert into player_factory(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="factoryID"> factoryID </isNotNull>
+		<isNotNull prepend="," property="showLevel"> showLevel </isNotNull>
+		<isNotNull prepend="," property="pointX"> pointX </isNotNull>
+		<isNotNull prepend="," property="pointY"> pointY </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="factoryID"> #factoryID# </isNotNull>
+		<isNotNull prepend="," property="showLevel"> #showLevel# </isNotNull>
+		<isNotNull prepend="," property="pointX"> #pointX# </isNotNull>
+		<isNotNull prepend="," property="pointY"> #pointY# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerFactory">
+		delete from player_factory
+		<include refid="queryByKeyPlayerFactory" />
+	</delete>
+
+	<update id="updatePlayerFactory"
+		parameterClass="com.dj.domain.entity.player.PlayerFactory">
+		update player_factory
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="factoryID"> factoryID = #factoryID# </isNotNull>
+			<isNotNull prepend="," property="showLevel"> showLevel = #showLevel# </isNotNull>
+			<isNotNull prepend="," property="pointX"> pointX = #pointX# </isNotNull>
+			<isNotNull prepend="," property="pointY"> pointY = #pointY# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerFactory" />
+	</update>
+
+	<select id="selectSinglePlayerFactory" resultMap="playerFactoryResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,showLevel
+		,pointX
+		,pointY
+		,createTime
+		,updateTime
+		from
+		player_factory
+		<include refid="queryByKeyPlayerFactory" />
+	</select>
+
+	<select id="selectRecordsCountPlayerFactory"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_factory
+		<include refid="queryConditionPlayerFactory" />
+	</select>
+
+	<select id="selectMultiPagingPlayerFactory"
+		parameterClass="java.util.Map" resultMap="playerFactoryResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,showLevel
+		,pointX
+		,pointY
+		,createTime
+		,updateTime
+		from
+		player_factory
+		<include refid="queryConditionPlayerFactory" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerFactory"
+		parameterClass="java.util.Map" resultMap="playerFactoryResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,showLevel
+		,pointX
+		,pointY
+		,createTime
+		,updateTime
+		from
+		player_factory
+		<include refid="queryConditionPlayerFactory" />
+	</select>
+
+	<select id="selectAllPlayerFactory" resultMap="playerFactoryResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,showLevel
+		,pointX
+		,pointY
+		,createTime
+		,updateTime
+		from
+		player_factory
+	</select>
+
+	<select id="selectSingleByParamsPlayerFactory"
+			parameterClass="java.util.Map" resultMap="playerFactoryResultMap">
+		select
+		id
+		,roleID
+		,factoryID
+		,showLevel
+		,pointX
+		,pointY
+		,createTime
+		,updateTime
+		from
+		player_factory
+		<include refid="queryConditionPlayerFactory" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

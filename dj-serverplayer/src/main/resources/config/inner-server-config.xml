@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+	<name>Player</name>
+	<id>1</id>
+	<port>9010</port>
+	<!--日志文件保存路径 -->
+	<logPath>/mnt/logs/</logPath>
+	<jsonPath>/mnt/json/</jsonPath>
+	<jsonUpdate>true</jsonUpdate>
+	<serverCdnUrl>http://127.0.0.1:8080/</serverCdnUrl>
+	<bbsUrl>http://127.0.0.1:8282/</bbsUrl>
+	<isFormal>false</isFormal>
+	<isDense>true</isDense>
+	<tag>local</tag>
+	<redis>
+		<isCluster>false</isCluster>
+		<host>127.0.0.1</host>
+		<port>6379</port>
+		<database>0</database>
+		<poolMaxActive>128</poolMaxActive>
+		<poolMaxTotal>128</poolMaxTotal>
+		<poolMaxIdle>10</poolMaxIdle>
+		<maxRedirections>10</maxRedirections>
+		<timeout>5000</timeout>
+		<prefix>dj</prefix>
+	</redis>
+	<dbPlayer>
+		<url>jdbc:mysql://127.0.0.1:3306/dj-player?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true</url>
+		<user>root</user>
+		<password>Abc123,.</password>
+		<driverClass>com.mysql.cj.jdbc.Driver</driverClass>
+		<initialPoolSize>3</initialPoolSize>
+		<minPoolSize>3</minPoolSize>
+		<maxPoolSize>15</maxPoolSize>
+	</dbPlayer>
+	<dbGlobal>
+		<url>jdbc:mysql://127.0.0.1:3306/dj-global?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true</url>
+		<user>root</user>
+		<password>Abc123,.</password>
+		<driverClass>com.mysql.cj.jdbc.Driver</driverClass>
+		<initialPoolSize>3</initialPoolSize>
+		<minPoolSize>3</minPoolSize>
+		<maxPoolSize>15</maxPoolSize>
+	</dbGlobal>
+	<dbRobot>
+		<url>jdbc:mysql://127.0.0.1:3306/dj-robot?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true</url>
+		<user>root</user>
+		<password>Abc123,.</password>
+		<driverClass>com.mysql.cj.jdbc.Driver</driverClass>
+		<initialPoolSize>3</initialPoolSize>
+		<minPoolSize>3</minPoolSize>
+		<maxPoolSize>15</maxPoolSize>
+	</dbRobot>
+</server>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="SmsCode">
+	<resultMap id="smsCodeResultMap"
+		class="com.dj.domain.entity.player.SmsCode">
+		<result property="id" column="id" />
+		<result property="phone" column="phone" />
+		<result property="code" column="code" />
+		<result property="ip" column="ip" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionSmsCode">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="phone"> phone = #phone# </isNotNull>
+			<isNotNull prepend="and" property="code"> code = #code# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeySmsCode">
+		where id = #id#
+	</sql>
+
+	<insert id="insertSmsCode"
+		parameterClass="com.dj.domain.entity.player.SmsCode">
+		insert into sms_code(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="phone"> phone </isNotNull>
+		<isNotNull prepend="," property="code"> code </isNotNull>
+		<isNotNull prepend="," property="ip"> ip </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="phone"> #phone# </isNotNull>
+		<isNotNull prepend="," property="code"> #code# </isNotNull>
+		<isNotNull prepend="," property="ip"> #ip# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteSmsCode">
+		delete from sms_code
+		<include refid="queryByKeySmsCode" />
+	</delete>
+
+	<update id="updateSmsCode"
+		parameterClass="com.dj.domain.entity.player.SmsCode">
+		update sms_code
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="phone"> phone = #phone# </isNotNull>
+			<isNotNull prepend="," property="code"> code = #code# </isNotNull>
+			<isNotNull prepend="," property="ip"> ip = #ip# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeySmsCode" />
+	</update>
+
+	<select id="selectSingleSmsCode" resultMap="smsCodeResultMap">
+		select
+		id
+		,phone
+		,code
+		,ip
+		,createTime
+		,updateTime
+		from sms_code
+		<include refid="queryByKeySmsCode" />
+	</select>
+
+	<select id="selectRecordsCountSmsCode"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from sms_code
+		<include refid="queryConditionSmsCode" />
+	</select>
+
+	<select id="selectMultiPagingSmsCode"
+		parameterClass="java.util.Map" resultMap="smsCodeResultMap">
+		select
+		id
+		,phone
+		,code
+		,ip
+		,createTime
+		,updateTime
+		from sms_code
+		<include refid="queryConditionSmsCode" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiSmsCode"
+		parameterClass="java.util.Map" resultMap="smsCodeResultMap">
+		select
+		id
+		,phone
+		,code
+		,ip
+		,createTime
+		,updateTime
+		from sms_code
+		<include refid="queryConditionSmsCode" />
+	</select>
+
+	<select id="selectAllSmsCode" resultMap="smsCodeResultMap">
+		select
+		id
+		,phone
+		,code
+		,ip
+		,createTime
+		,updateTime
+		from sms_code
+	</select>
+
+	<select id="selectSingleByParamsSmsCode"
+			parameterClass="java.util.Map" resultMap="smsCodeResultMap">
+		select
+		id
+		,phone
+		,code
+		,ip
+		,createTime
+		,updateTime
+		from sms_code
+		<include refid="queryConditionSmsCode" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings useStatementNamespaces = "true"
+			  cacheModelsEnabled  = "false"
+			  enhancementEnabled  = "true"
+			  lazyLoadingEnabled  = "true"
+			  errorTracingEnabled  = "true"
+			  maxRequests    = "512"
+			  maxSessions    = "128"
+			  maxTransactions   = "16"/>
+	<sqlMap resource="sqlmap/robot/RobotFactory.xml" />
+	<sqlMap resource="sqlmap/robot/RobotFarm.xml" />
+	<sqlMap resource="sqlmap/robot/RobotObstacle.xml" />
+	<sqlMap resource="sqlmap/robot/RobotRole.xml" />
+	<sqlMap resource="sqlmap/robot/RobotShowTable.xml" />
+	<sqlMap resource="sqlmap/robot/RobotShowTableInfo.xml" />
+	<sqlMap resource="sqlmap/robot/RobotShowTableMoney.xml" />
+	<sqlMap resource="sqlmap/robot/RobotVerify.xml" />
+	<sqlMap resource="sqlmap/robot/RobotVerifyHistory.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem1.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem2.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem3.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem4.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem5.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem6.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem7.xml" />
+	<sqlMap resource="sqlmap/robot/item/RobotItem100.xml" />
+</sqlMapConfig>

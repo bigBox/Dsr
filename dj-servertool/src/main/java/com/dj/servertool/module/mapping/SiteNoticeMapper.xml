@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.dj.servertool.module.mapper.SiteNoticeMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="com.dj.servertool.module.entity.SiteNotice">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="time" property="time" />
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, title, content, time
+	</sql>
+
+	<select id="list" resultType="map">
+		select
+		<include refid="Base_Column_List"></include>
+		from site_notice
+		<if test="condition != null and condition != ''">
+			where title like CONCAT('%',#{condition},'%')
+		</if>
+		order by time DESC
+	</select>
+
+</mapper>

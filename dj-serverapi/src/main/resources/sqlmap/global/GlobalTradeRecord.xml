@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GlobalTradeRecord">
+	<resultMap id="globalTradeRecordResultMap"
+		class="com.dj.domain.entity.global.GlobalTradeRecord">
+		<result property="id" column="id" />
+		<result property="buyRoleID" column="buyRoleID" />
+		<result property="sellRoleID" column="sellRoleID" />
+		<result property="orderID" column="orderID" />
+		<result property="orderNum" column="orderNum" />
+		<result property="type" column="type" />
+		<result property="itemID" column="itemID" />
+		<result property="itemNum" column="itemNum" />
+		<result property="price" column="price" />
+		<result property="amount" column="amount" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionGlobalTradeRecord">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="buyRoleID"> buyRoleID = #buyRoleID# </isNotNull>
+			<isNotNull prepend="and" property="sellRoleID"> sellRoleID = #sellRoleID# </isNotNull>
+			<isNotNull prepend="and" property="orderID"> orderID = #orderID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="and" property="type"> `type` = #type# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyGlobalTradeRecord">
+		where id = #id#
+	</sql>
+
+	<insert id="insertGlobalTradeRecord"
+		parameterClass="com.dj.domain.entity.global.GlobalTradeRecord">
+		insert into global_trade_record(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="buyRoleID"> buyRoleID </isNotNull>
+		<isNotNull prepend="," property="sellRoleID"> sellRoleID </isNotNull>
+		<isNotNull prepend="," property="orderID"> orderID </isNotNull>
+		<isNotNull prepend="," property="orderNum"> orderNum </isNotNull>
+		<isNotNull prepend="," property="type"> `type` </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="itemNum"> itemNum </isNotNull>
+		<isNotNull prepend="," property="price"> price </isNotNull>
+		<isNotNull prepend="," property="amount"> amount </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="buyRoleID"> #buyRoleID# </isNotNull>
+		<isNotNull prepend="," property="sellRoleID"> #sellRoleID# </isNotNull>
+		<isNotNull prepend="," property="orderID"> #orderID# </isNotNull>
+		<isNotNull prepend="," property="orderNum"> #orderNum# </isNotNull>
+		<isNotNull prepend="," property="type"> #type# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="itemNum"> #itemNum# </isNotNull>
+		<isNotNull prepend="," property="price"> #price# </isNotNull>
+		<isNotNull prepend="," property="amount"> #amount# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteGlobalTradeRecord">
+		delete from global_trade_record
+		<include refid="queryByKeyGlobalTradeRecord" />
+	</delete>
+
+	<update id="updateGlobalTradeRecord"
+		parameterClass="com.dj.domain.entity.global.GlobalTradeRecord">
+		update global_trade_record
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="buyRoleID"> buyRoleID = #buyRoleID#	</isNotNull>
+			<isNotNull prepend="," property="sellRoleID"> sellRoleID = #sellRoleID#	</isNotNull>
+			<isNotNull prepend="," property="orderID"> orderID = #orderID# </isNotNull>
+			<isNotNull prepend="," property="orderNum"> orderNum = #orderNum# </isNotNull>
+			<isNotNull prepend="," property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="itemNum"> itemNum = #itemNum# </isNotNull>
+			<isNotNull prepend="," property="price"> price = #price# </isNotNull>
+			<isNotNull prepend="," property="amount"> amount = #amount# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime#	</isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime#	</isNotNull>
+		</dynamic>
+		<include refid="queryByKeyGlobalTradeRecord" />
+	</update>
+
+	<select id="selectSingleGlobalTradeRecord" resultMap="globalTradeRecordResultMap">
+		select
+		id
+		,buyRoleID
+		,sellRoleID
+		,orderID
+		,orderNum
+		,`type`
+		,itemID
+		,itemNum
+		,price
+		,amount
+		,createTime
+		,updateTime
+		from
+		global_trade_record
+		<include refid="queryByKeyGlobalTradeRecord" />
+	</select>
+
+	<select id="selectRecordsCountGlobalTradeRecord"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from global_trade_record
+		<include refid="queryConditionGlobalTradeRecord" />
+	</select>
+
+	<select id="selectMultiPagingGlobalTradeRecord"
+		parameterClass="java.util.Map" resultMap="globalTradeRecordResultMap">
+		select
+		id
+		,buyRoleID
+		,sellRoleID
+		,orderID
+		,orderNum
+		,`type`
+		,itemID
+		,itemNum
+		,price
+		,amount
+		,createTime
+		,updateTime
+		from
+		global_trade_record
+		<include refid="queryConditionGlobalTradeRecord" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiGlobalTradeRecord"
+		parameterClass="java.util.Map" resultMap="globalTradeRecordResultMap">
+		select
+		id
+		,buyRoleID
+		,sellRoleID
+		,orderID
+		,orderNum
+		,`type`
+		,itemID
+		,itemNum
+		,price
+		,amount
+		,createTime
+		,updateTime
+		from
+		global_trade_record
+		<include refid="queryConditionGlobalTradeRecord" />
+	</select>
+
+	<select id="selectAllGlobalTradeRecord" resultMap="globalTradeRecordResultMap">
+		select
+		id
+		,buyRoleID
+		,sellRoleID
+		,orderID
+		,orderNum
+		,`type`
+		,itemID
+		,itemNum
+		,price
+		,amount
+		,createTime
+		,updateTime
+		from
+		global_trade_record
+	</select>
+
+	<select id="selectSingleByParamsGlobalTradeRecord"
+			parameterClass="java.util.Map" resultMap="globalTradeRecordResultMap">
+		select
+		id
+		,buyRoleID
+		,sellRoleID
+		,orderID
+		,orderNum
+		,`type`
+		,itemID
+		,itemNum
+		,price
+		,amount
+		,createTime
+		,updateTime
+		from
+		global_trade_record
+		<include refid="queryConditionGlobalTradeRecord" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerNpc">
+	<resultMap id="playerNpcResultMap"
+		class="com.dj.domain.entity.player.PlayerNpc">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="npcID" column="npcID" />
+		<result property="visitValue" column="visitValue" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerNpc">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="npcID"> npcID = #npcID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerNpc">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerNpc"
+		parameterClass="com.dj.domain.entity.player.PlayerNpc">
+		insert into player_npc(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="npcID"> npcID </isNotNull>
+		<isNotNull prepend="," property="visitValue"> visitValue </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="npcID"> #npcID# </isNotNull>
+		<isNotNull prepend="," property="visitValue"> #visitValue# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerNpc">
+		delete from player_npc
+		<include refid="queryByKeyPlayerNpc" />
+	</delete>
+
+	<update id="updatePlayerNpc"
+		parameterClass="com.dj.domain.entity.player.PlayerNpc">
+		update player_npc
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="npcID"> npcID = #npcID# </isNotNull>
+			<isNotNull prepend="," property="visitValue"> visitValue = #visitValue# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerNpc" />
+	</update>
+
+	<select id="selectSinglePlayerNpc"
+		resultMap="playerNpcResultMap">
+		select
+		id
+		,roleID
+		,npcID
+		,visitValue
+		,createTime
+		,updateTime
+		from
+		player_npc
+		<include refid="queryByKeyPlayerNpc" />
+	</select>
+
+	<select id="selectRecordsCountPlayerNpc"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_npc
+		<include refid="queryConditionPlayerNpc" />
+	</select>
+
+	<select id="selectMultiPagingPlayerNpc"
+		parameterClass="java.util.Map" resultMap="playerNpcResultMap">
+		select
+		id
+		,roleID
+		,npcID
+		,visitValue
+		,createTime
+		,updateTime
+		from
+		player_npc
+		<include refid="queryConditionPlayerNpc" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerNpc"
+		parameterClass="java.util.Map" resultMap="playerNpcResultMap">
+		select
+		id
+		,roleID
+		,npcID
+		,visitValue
+		,createTime
+		,updateTime
+		from
+		player_npc
+		<include refid="queryConditionPlayerNpc" />
+	</select>
+
+	<select id="selectAllPlayerNpc" resultMap="playerNpcResultMap">
+		select
+		id
+		,roleID
+		,npcID
+		,visitValue
+		,createTime
+		,updateTime
+		from
+		player_npc
+	</select>
+
+	<select id="selectSingleByParamsPlayerNpc"
+			parameterClass="java.util.Map" resultMap="playerNpcResultMap">
+		select
+		id
+		,roleID
+		,npcID
+		,visitValue
+		,createTime
+		,updateTime
+		from
+		player_npc
+		<include refid="queryConditionPlayerNpc" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

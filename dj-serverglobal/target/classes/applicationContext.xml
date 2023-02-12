@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<context:component-scan	base-package="com.dj.serverglobal.**.**,com.dj.servercore.**.**,com.dj.serverapi.**.**" />
+
+	<bean id="dbGlobalParam" class="com.dj.servercore.db.base.DBParam">
+		<property name="configLocation"	value="sqlmap/globalConfig.xml" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="10" />
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="30" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout" value="180" />
+		<!-- 连接属性 -->
+		<property name="connectionProperties" value="clientEncoding\=UTF-8" />
+	</bean>
+
+	<bean id="globalSqlMapClient" class="com.dj.servercore.db.sqlMapClient.MySqlMapClient">
+		<constructor-arg index="0" ref="dbGlobalParam"></constructor-arg>
+		<constructor-arg index="1" value="global"></constructor-arg>
+	</bean>
+
+
+	<bean id="dbPlayerParam" class="com.dj.servercore.db.base.DBParam">
+		<property name="configLocation"	value="sqlmap/playerConfig.xml" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="10" />
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="30" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout" value="180" />
+		<!-- 连接属性 -->
+		<property name="connectionProperties" value="clientEncoding\=UTF-8" />
+	</bean>
+
+	<bean id="playerSqlMapClient" class="com.dj.servercore.db.sqlMapClient.MySqlMapClient">
+		<constructor-arg index="0" ref="dbPlayerParam"></constructor-arg>
+		<constructor-arg index="1" value="player"></constructor-arg>
+	</bean>
+
+<!--	<bean id="playerAsyncWriteManager" class="com.dj.servercore.db.cache.write.AsyncWriteManager" init-method="init">-->
+<!--		<property name="writerSize" value="3" />-->
+<!--		<property name="writePeriod" value="1"></property>-->
+<!--		<property name="sqlMapClient" ref="playerSqlMapClient" />-->
+<!--	</bean>-->
+
+	<bean id="dbRobotParam" class="com.dj.servercore.db.base.DBParam">
+		<property name="configLocation"	value="sqlmap/robotConfig.xml" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="10" />
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="30" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout" value="180" />
+		<!-- 连接属性 -->
+		<property name="connectionProperties" value="clientEncoding\=UTF-8" />
+	</bean>
+
+	<bean id="robotSqlMapClient" class="com.dj.servercore.db.sqlMapClient.MySqlMapClient">
+		<constructor-arg index="0" ref="dbRobotParam"></constructor-arg>
+		<constructor-arg index="1" value="robot"></constructor-arg>
+	</bean>
+
+<!--	<bean id="robotAsyncWriteManager" class="com.dj.servercore.db.cache.write.AsyncWriteManager" init-method="init">-->
+<!--		<property name="writerSize" value="3" />-->
+<!--		<property name="writePeriod" value="1"></property>-->
+<!--		<property name="sqlMapClient" ref="robotSqlMapClient" />-->
+<!--	</bean>-->
+
+	<!-- 商会异步写数据 -->
+	<bean id="write4Guild" class="com.dj.servercore.db.cache.write.AsyncWriteManager"
+		  init-method="init">
+		<property name="writerSize" value="2" />
+		<property name="writePeriod" value="1"></property>
+		<property name="sqlMapClient" ref="globalSqlMapClient" />
+	</bean>
+
+	<!-- 交易异步写数据 -->
+	<bean id="write4Trade" class="com.dj.servercore.db.cache.write.AsyncWriteManager"
+		  init-method="init">
+		<property name="writerSize" value="2" />
+		<property name="writePeriod" value="1"></property>
+		<property name="sqlMapClient" ref="globalSqlMapClient" />
+	</bean>
+
+	<!-- 商会cache -->
+	<bean id="guildCacheManager" class="com.dj.servercore.db.cache.CacheManager" init-method="init">
+		<property name="entityCacheLoader" ref="guildCacheLoader"></property>
+		<property name="asyncWriteManager" ref="write4Guild"></property>
+	</bean>
+
+	<!-- 交易cache -->
+	<!--<bean id="tradeCacheManager" class="com.dj.servercore.db.cache.CacheManager" init-method="init">
+		<property name="entityCacheLoader" ref="tradeCacheLoader"></property>
+		<property name="asyncWriteManager" ref="write4Trade"></property>
+	</bean>-->
+
+	<!-- 商会accessor -->
+	<bean id="guildCacheAccessor" class="com.dj.servercore.db.accessor.EntityCacheAccessor">
+		<property name="cacheManager" ref="guildCacheManager"></property>
+		<property name="asyncWriteManager" ref="write4Guild"></property>
+	</bean>
+
+	<!-- 交易accessor -->
+	<!--<bean id="tradeCacheAccessor" class="com.dj.servercore.db.accessor.EntityCacheAccessor">
+		<property name="cacheManager" ref="tradeCacheManager"></property>
+		<property name="asyncWriteManager" ref="write4Trade"></property>
+	</bean>-->
+
+	<!-- 直接访问db accessor -->
+	<bean id="directDbAccessor" class="com.dj.servercore.db.accessor.DatabaseAccessor"></bean>
+
+	<!-- 访问管理器 -->
+	<bean id="accessorManager" class="com.dj.servercore.db.accessor.AccessorManager">
+		<property name="accessors">
+			<map>
+				<entry key="directDB" value="directDbAccessor" />
+				<entry key="guildCache" value="guildCacheAccessor" />
+				<entry key="tradeCache" value="tradeCacheAccessor" />
+			</map>
+		</property>
+		<property name="defaultType">
+			<value>directDB</value>
+		</property>
+	</bean>
+
+</beans>

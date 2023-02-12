@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RobotObstacle">
+	<resultMap id="robotObstacleResultMap"
+		class="com.dj.domain.entity.robot.RobotObstacle">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="obstacleID" column="obstacleID" />
+		<result property="isOpen" column="isOpen" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionRobotObstacle">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="obstacleID"> obstacleID = #obstacleID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyRobotObstacle">
+		where id = #id#
+	</sql>
+
+	<insert id="insertRobotObstacle"
+		parameterClass="com.dj.domain.entity.robot.RobotObstacle">
+		insert into robot_obstacle(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="obstacleID"> obstacleID </isNotNull>
+		<isNotNull prepend="," property="isOpen"> isOpen </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="obstacleID"> #obstacleID# </isNotNull>
+		<isNotNull prepend="," property="isOpen"> #isOpen# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteRobotObstacle">
+		delete from robot_obstacle
+		<include refid="queryByKeyRobotObstacle" />
+	</delete>
+
+	<update id="updateRobotObstacle"
+		parameterClass="com.dj.domain.entity.robot.RobotObstacle">
+		update robot_obstacle
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="obstacleID"> obstacleID = #obstacleID# </isNotNull>
+			<isNotNull prepend="," property="isOpen"> isOpen = #isOpen# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyRobotObstacle" />
+	</update>
+
+	<select id="selectSingleRobotObstacle"
+		resultMap="robotObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		robot_obstacle
+		<include refid="queryByKeyRobotObstacle" />
+	</select>
+
+	<select id="selectRecordsCountRobotObstacle"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from robot_obstacle
+		<include refid="queryConditionRobotObstacle" />
+	</select>
+
+	<select id="selectMultiPagingRobotObstacle"
+		parameterClass="java.util.Map" resultMap="robotObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		robot_obstacle
+		<include refid="queryConditionRobotObstacle" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiRobotObstacle"
+		parameterClass="java.util.Map" resultMap="robotObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		robot_obstacle
+		<include refid="queryConditionRobotObstacle" />
+	</select>
+
+	<select id="selectAllRobotObstacle" resultMap="robotObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		robot_obstacle
+	</select>
+
+	<select id="selectSingleByParamsRobotObstacle"
+			parameterClass="java.util.Map" resultMap="robotObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		robot_obstacle
+		<include refid="queryConditionRobotObstacle" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AliPay">
+	<resultMap id="aliPayResultMap"
+		class="com.dj.domain.entity.player.AliPay">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="tradeNo" column="tradeNo" />
+		<result property="outTradeNo" column="outTradeNo" />
+		<result property="itemId" column="itemId" />
+		<result property="count" column="count" />
+		<result property="price" column="price" />
+		<result property="amount" column="amount" />
+		<result property="success" column="success" />
+		<result property="deliver" column="deliver" />
+		<result property="timeStamp" column="timeStamp" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionAliPay">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="tradeNo"> tradeNo = #tradeNo# </isNotNull>
+			<isNotNull prepend="and" property="outTradeNo"> outTradeNo = #outTradeNo# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyAliPay">
+		where id = #id#
+	</sql>
+
+	<insert id="insertAliPay"
+		parameterClass="com.dj.domain.entity.player.AliPay">
+		insert into ali_pay(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="tradeNo"> tradeNo </isNotNull>
+		<isNotNull prepend="," property="outTradeNo"> outTradeNo </isNotNull>
+		<isNotNull prepend="," property="itemId"> itemId </isNotNull>
+		<isNotNull prepend="," property="count"> `count` </isNotNull>
+		<isNotNull prepend="," property="price"> price </isNotNull>
+		<isNotNull prepend="," property="amount"> amount </isNotNull>
+		<isNotNull prepend="," property="success"> success </isNotNull>
+		<isNotNull prepend="," property="deliver"> deliver </isNotNull>
+		<isNotNull prepend="," property="timeStamp"> `timeStamp` </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="tradeNo"> #tradeNo# </isNotNull>
+		<isNotNull prepend="," property="outTradeNo"> #outTradeNo# </isNotNull>
+		<isNotNull prepend="," property="itemId"> #itemId# </isNotNull>
+		<isNotNull prepend="," property="count"> #count# </isNotNull>
+		<isNotNull prepend="," property="price"> #price# </isNotNull>
+		<isNotNull prepend="," property="amount"> #amount# </isNotNull>
+		<isNotNull prepend="," property="success"> #success# </isNotNull>
+		<isNotNull prepend="," property="deliver"> #deliver# </isNotNull>
+		<isNotNull prepend="," property="timeStamp"> #timeStamp# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteAliPay">
+		delete from ali_pay
+		<include refid="queryByKeyAliPay" />
+	</delete>
+
+	<update id="updateAliPay"
+		parameterClass="com.dj.domain.entity.player.AliPay">
+		update ali_pay
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="tradeNo"> tradeNo = #tradeNo# </isNotNull>
+			<isNotNull prepend="," property="outTradeNo"> outTradeNo = #outTradeNo# </isNotNull>
+			<isNotNull prepend="," property="itemId"> itemId = #itemId# </isNotNull>
+			<isNotNull prepend="," property="count"> `count` = #count# </isNotNull>
+			<isNotNull prepend="," property="price"> price = #price# </isNotNull>
+			<isNotNull prepend="," property="amount"> amount = #amount# </isNotNull>
+			<isNotNull prepend="," property="success"> success = #success# </isNotNull>
+			<isNotNull prepend="," property="deliver"> deliver = #deliver# </isNotNull>
+			<isNotNull prepend="," property="timeStamp"> `timeStamp` = #timeStamp# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyAliPay" />
+	</update>
+
+	<select id="selectSingleAliPay" resultMap="aliPayResultMap">
+		select
+		id
+		,roleID
+		,tradeNo
+		,outTradeNo
+		,itemId
+		,`count`
+		,price
+		,amount
+		,success
+		,deliver
+		,`timeStamp`
+		,createTime
+		,updateTime
+		from ali_pay
+		<include refid="queryByKeyAliPay" />
+	</select>
+
+	<select id="selectRecordsCountAliPay"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from ali_pay
+		<include refid="queryConditionAliPay" />
+	</select>
+
+	<select id="selectMultiPagingAliPay"
+		parameterClass="java.util.Map" resultMap="aliPayResultMap">
+		select
+		id
+		,roleID
+		,tradeNo
+		,outTradeNo
+		,itemId
+		,`count`
+		,price
+		,amount
+		,success
+		,deliver
+		,`timeStamp`
+		,createTime
+		,updateTime
+		from ali_pay
+		<include refid="queryConditionAliPay" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiAliPay"
+		parameterClass="java.util.Map" resultMap="aliPayResultMap">
+		select
+		id
+		,roleID
+		,tradeNo
+		,outTradeNo
+		,itemId
+		,`count`
+		,price
+		,amount
+		,success
+		,deliver
+		,`timeStamp`
+		,createTime
+		,updateTime
+		from ali_pay
+		<include refid="queryConditionAliPay" />
+	</select>
+
+	<select id="selectAllAliPay" resultMap="aliPayResultMap">
+		select
+		id
+		,roleID
+		,tradeNo
+		,outTradeNo
+		,itemId
+		,`count`
+		,price
+		,amount
+		,success
+		,deliver
+		,`timeStamp`
+		,createTime
+		,updateTime
+		from ali_pay
+	</select>
+
+	<select id="selectSingleByParamsAliPay"
+			parameterClass="java.util.Map" resultMap="aliPayResultMap">
+		select
+		id
+		,roleID
+		,tradeNo
+		,outTradeNo
+		,itemId
+		,`count`
+		,price
+		,amount
+		,success
+		,deliver
+		,`timeStamp`
+		,createTime
+		,updateTime
+		from ali_pay
+		<include refid="queryConditionAliPay" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

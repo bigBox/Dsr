@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerShowTableInfo">
+	<resultMap id="playerShowTableInfoResultMap"
+		class="com.dj.domain.entity.player.PlayerShowTableInfo">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="type" column="type" />
+		<result property="page" column="page" />
+		<result property="info" column="info" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerShowTableInfo">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="and" property="page"> page = #page# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerShowTableInfo">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerShowTableInfo"
+		parameterClass="com.dj.domain.entity.player.PlayerShowTableInfo">
+		insert into player_showtable_info(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="type"> `type` </isNotNull>
+		<isNotNull prepend="," property="page"> page </isNotNull>
+		<isNotNull prepend="," property="info"> info </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="type"> #type# </isNotNull>
+		<isNotNull prepend="," property="page"> #page# </isNotNull>
+		<isNotNull prepend="," property="info"> #info# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerShowTableInfo">
+		delete from player_showtable_info
+		<include refid="queryByKeyPlayerShowTableInfo" />
+	</delete>
+
+	<update id="updatePlayerShowTableInfo"
+		parameterClass="com.dj.domain.entity.player.PlayerShowTableInfo">
+		update player_showtable_info
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="," property="page"> page = #page# </isNotNull>
+			<isNotNull prepend="," property="info"> info = #info# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerShowTableInfo" />
+	</update>
+
+	<select id="selectSinglePlayerShowTableInfo"
+		resultMap="playerShowTableInfoResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,page
+		,info
+		,createTime
+		,updateTime
+		from
+		player_showtable_info
+		<include refid="queryByKeyPlayerShowTableInfo" />
+	</select>
+
+	<select id="selectRecordsCountPlayerShowTableInfo"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_showtable_info
+		<include refid="queryConditionPlayerShowTableInfo" />
+	</select>
+
+	<select id="selectMultiPagingPlayerShowTableInfo"
+		parameterClass="java.util.Map" resultMap="playerShowTableInfoResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,page
+		,info
+		,createTime
+		,updateTime
+		from
+		player_showtable_info
+		<include refid="queryConditionPlayerShowTableInfo" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerShowTableInfo"
+		parameterClass="java.util.Map" resultMap="playerShowTableInfoResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,page
+		,info
+		,createTime
+		,updateTime
+		from
+		player_showtable_info
+		<include refid="queryConditionPlayerShowTableInfo" />
+	</select>
+
+	<select id="selectAllPlayerShowTableInfo"
+		resultMap="playerShowTableInfoResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,page
+		,info
+		,createTime
+		,updateTime
+		from
+		player_showtable_info
+	</select>
+
+	<select id="selectSingleByParamsPlayerShowTableInfo"
+			parameterClass="java.util.Map" resultMap="playerShowTableInfoResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,page
+		,info
+		,createTime
+		,updateTime
+		from
+		player_showtable_info
+		<include refid="queryConditionPlayerShowTableInfo" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

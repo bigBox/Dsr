@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<rules>
+		<rule>
+			<patten>ResourceLogger</patten>
+			<parser>com.dj.serverlog.parser.ResourceParser</parser>
+			<lock>false</lock>
+		</rule>
+		<rule>
+			<patten>LoginLogger</patten>
+			<parser>com.dj.serverlog.parser.LoginParser</parser>
+			<lock>false</lock>
+		</rule>
+		<rule>
+			<patten>OnlineLogger</patten>
+			<parser>com.dj.serverlog.parser.OnlineParser</parser>
+			<lock>false</lock>
+		</rule>
+		<rule>
+			<patten>ActionLogger</patten>
+			<parser>com.dj.serverlog.parser.ActionParser</parser>
+			<lock>false</lock>
+		</rule>
+	</rules>
+</config>

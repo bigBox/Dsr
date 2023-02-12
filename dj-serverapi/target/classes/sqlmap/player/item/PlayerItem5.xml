@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerItem5">
+	<resultMap id="playerItemResultMap5"
+		class="com.dj.domain.entity.player.item.PlayerItem5">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="itemID" column="itemID" />
+		<result property="itemCount" column="itemCount" />
+		<result property="inVerifyCount" column="inVerifyCount" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerItem5">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerItem5">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerItem5"
+		parameterClass="com.dj.domain.entity.player.item.PlayerItem5">
+		insert into player_item5(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="itemCount"> itemCount </isNotNull>
+		<isNotNull prepend="," property="inVerifyCount"> inVerifyCount </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="itemCount"> #itemCount# </isNotNull>
+		<isNotNull prepend="," property="inVerifyCount"> #inVerifyCount#  </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerItem5">
+		delete from player_item5
+		<include refid="queryByKeyPlayerItem5" />
+	</delete>
+
+	<update id="updatePlayerItem5"
+		parameterClass="com.dj.domain.entity.player.item.PlayerItem5">
+		update player_item5
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="itemCount"> itemCount = #itemCount# </isNotNull>
+			<isNotNull prepend="," property="inVerifyCount"> inVerifyCount = #inVerifyCount# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerItem5" />
+	</update>
+
+	<select id="selectSinglePlayerItem5" resultMap="playerItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from player_item5
+		<include refid="queryConditionPlayerItem5" />
+	</select>
+
+	<select id="selectRecordsCountPlayerItem5"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_item5
+		<include refid="queryConditionPlayerItem5" />
+	</select>
+
+	<select id="selectMultiPagingPlayerItem5"
+		parameterClass="java.util.Map" resultMap="playerItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from player_item5
+		<include refid="queryConditionPlayerItem5" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerItem5"
+		parameterClass="java.util.Map" resultMap="playerItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from player_item5
+		<include refid="queryConditionPlayerItem5" />
+	</select>
+
+	<select id="selectAllPlayerItem5" resultMap="playerItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from player_item5
+	</select>
+
+	<select id="selectSingleByParamsPlayerItem5"
+		parameterClass="java.util.Map" resultMap="playerItemResultMap5">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,inVerifyCount
+		,createTime
+		,updateTime
+		from player_item5
+		<include refid="queryConditionPlayerItem5" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

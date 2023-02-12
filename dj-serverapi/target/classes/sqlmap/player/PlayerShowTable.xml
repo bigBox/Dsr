@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerShowTable">
+	<resultMap id="playerShowTableResultMap"
+		class="com.dj.domain.entity.player.PlayerShowTable">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="itemID" column="itemID" />
+		<result property="type" column="type" />
+		<result property="page" column="page" />
+		<result property="index" column="index" />
+		<result property="x" column="x" />
+		<result property="y" column="y" />
+		<result property="suitID" column="suitID" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerShowTable">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="and" property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="and" property="page"> page = #page# </isNotNull>
+			<isNotNull prepend="and" property="index"> `index` = #index# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerShowTable">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerShowTable"
+		parameterClass="com.dj.domain.entity.player.PlayerShowTable">
+		insert into player_showtable(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="type"> `type` </isNotNull>
+		<isNotNull prepend="," property="page"> page </isNotNull>
+		<isNotNull prepend="," property="index"> `index` </isNotNull>
+		<isNotNull prepend="," property="x"> x </isNotNull>
+		<isNotNull prepend="," property="y"> y </isNotNull>
+		<isNotNull prepend="," property="suitID"> suitID </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="type"> #type# </isNotNull>
+		<isNotNull prepend="," property="page"> #page# </isNotNull>
+		<isNotNull prepend="," property="index"> #index# </isNotNull>
+		<isNotNull prepend="," property="x"> #x# </isNotNull>
+		<isNotNull prepend="," property="y"> #y# </isNotNull>
+		<isNotNull prepend="," property="suitID"> #suitID# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerShowTable">
+		delete from player_showtable
+		<include refid="queryByKeyPlayerShowTable" />
+	</delete>
+
+	<update id="updatePlayerShowTable"
+		parameterClass="com.dj.domain.entity.player.PlayerShowTable">
+		update player_showtable
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="," property="page"> page = #page# </isNotNull>
+			<isNotNull prepend="," property="index"> `index` = #index# </isNotNull>
+			<isNotNull prepend="," property="x"> x = #x# </isNotNull>
+			<isNotNull prepend="," property="y"> y = #y# </isNotNull>
+			<isNotNull prepend="," property="suitID"> suitID = #suitID# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerShowTable" />
+	</update>
+
+	<select id="selectSinglePlayerShowTable"
+		resultMap="playerShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		player_showtable
+		<include refid="queryByKeyPlayerShowTable" />
+	</select>
+
+	<select id="selectRecordsCountPlayerShowTable"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_showtable
+		<include refid="queryConditionPlayerShowTable" />
+	</select>
+
+	<select id="selectMultiPagingPlayerShowTable"
+		parameterClass="java.util.Map" resultMap="playerShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		player_showtable
+		<include refid="queryConditionPlayerShowTable" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerShowTable"
+		parameterClass="java.util.Map" resultMap="playerShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		player_showtable
+		<include refid="queryConditionPlayerShowTable" />
+	</select>
+
+	<select id="selectAllPlayerShowTable"
+		resultMap="playerShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		player_showtable
+	</select>
+
+	<select id="selectSingleByParamsPlayerShowTable"
+			parameterClass="java.util.Map" resultMap="playerShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		player_showtable
+		<include refid="queryConditionPlayerShowTable" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+	<name>Log</name>
+	<id>1</id>
+	<logPath>/data/logs/</logPath>
+	<isFormal>false</isFormal>
+	<isDense>true</isDense>
+	<keysPatten>*</keysPatten>
+	<!--REDIS 配置： host: 集群主机；port：集群节点端口(只需提供一个主节点端口，会自动加载其他节点); poolMaxTotal：连接池最大连接数；poolMaxIdle：连接池最小连接数；maxRedirections：最大转接数；timeout：超时设定 
+		prefix：redis key的前缀，子服务的前缀一致 -->
+	<jedis>
+		<host>127.0.0.1</host>
+		<port>6379</port>
+	</jedis>
+	<redis>
+		<isCluster>false</isCluster>
+		<host>127.0.0.1</host>
+		<port>6379</port>
+		<pass></pass>
+		<poolMaxTotal>64</poolMaxTotal>
+		<poolMaxIdle>10</poolMaxIdle>
+		<maxRedirections>10</maxRedirections>
+		<timeout>5000</timeout>
+		<prefix>report</prefix>
+	</redis>
+	<dbLog>
+		<url>jdbc:mysql://127.0.0.1:3306/dj-log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true
+		</url>
+		<user>root</user>
+		<password>Abc123,.</password>
+		<driverClass>com.mysql.jdbc.Driver</driverClass>
+		<initialPoolSize>10</initialPoolSize>
+		<minPoolSize>10</minPoolSize>
+		<maxPoolSize>32</maxPoolSize>
+		<acquireIncrement>3</acquireIncrement>
+		<maxIdleTime>0</maxIdleTime>
+		<maxStatements>0</maxStatements>
+		<maxStatementsPerConnection>0</maxStatementsPerConnection>
+		<preferredTestQuery></preferredTestQuery>
+	</dbLog>
+</server>

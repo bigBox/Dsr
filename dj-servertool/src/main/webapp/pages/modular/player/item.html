@@ -1,0 +1,58 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/player/item.js"]}){
+
+<div class="layui-body-header">
+	<span class="layui-body-header-title">玩家仓库</span>
+</div>
+
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-lg12">
+			<div class="layui-card">
+				<div class="layui-card-body">
+					<div class="layui-form toolbar">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<input id="roleID" class="layui-input" type="text"
+									placeholder="角色ID" />
+							</div>
+							<div class="layui-inline">
+								<button id="btnSearch" class="layui-btn icon-btn">
+									<i class="layui-icon">&#xe615;</i>搜索
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-header">植物</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item1" lay-filter="item1"></table>
+					</div>
+					<div class="layui-card-header">动物</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item2" lay-filter="item2"></table>
+					</div>
+					<div class="layui-card-header">食品</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item3" lay-filter="item3"></table>
+					</div>
+					<div class="layui-card-header">工业</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item4" lay-filter="item4"></table>
+					</div>
+					<div class="layui-card-header">收集品</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item5" lay-filter="item5"></table>
+					</div>
+					<div class="layui-card-header">道具</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item6" lay-filter="item6"></table>
+					</div>
+					<div class="layui-card-header">不进仓库的物品</div>
+					<div class="layui-card-body">
+						<table class="layui-table" id="item100" lay-filter="item100"></table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@}

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerLeaveHistory">
+	<resultMap id="playerLeaveHistoryResultMap"
+		class="com.dj.domain.entity.player.PlayerLeaveHistory">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="type" column="type" />
+		<result property="leaveID" column="leaveID" />
+		<result property="placeTime" column="placeTime" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerLeaveHistory">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="leaveID"> leaveID = #leaveID# </isNotNull>
+			<isNotNull prepend="and" property="type"> `type` = #type# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerLeaveHistory">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerLeaveHistory"
+		parameterClass="com.dj.domain.entity.player.PlayerLeaveHistory">
+		insert into player_leave_history(
+		<isNotNull prepend="" property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="type"> `type` </isNotNull>
+		<isNotNull prepend="," property="leaveID"> leaveID </isNotNull>
+		<isNotNull prepend="," property="placeTime"> placeTime </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="type"> #type# </isNotNull>
+		<isNotNull prepend="," property="leaveID"> #leaveID# </isNotNull>
+		<isNotNull prepend="," property="placeTime"> #placeTime# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerLeaveHistory">
+		delete from player_leave_history
+		<include refid="queryByKeyPlayerLeaveHistory" />
+	</delete>
+
+	<update id="updatePlayerLeaveHistory"
+		parameterClass="com.dj.domain.entity.player.PlayerLeaveHistory">
+		update player_leave_history
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="," property="leaveID"> leaveID = #leaveID# </isNotNull>
+			<isNotNull prepend="," property="placeTime"> placeTime = #placeTime# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerLeaveHistory" />
+	</update>
+
+	<select id="selectSinglePlayerLeaveHistory" resultMap="playerLeaveHistoryResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,leaveID
+		,placeTime
+		,createTime
+		,updateTime
+		from
+		player_leave_history
+		<include refid="queryByKeyPlayerLeaveHistory" />
+	</select>
+
+	<select id="selectRecordsCountPlayerLeaveHistory"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_leave_history
+		<include refid="queryConditionPlayerLeaveHistory" />
+	</select>
+
+	<select id="selectMultiPagingPlayerLeaveHistory"
+		parameterClass="java.util.Map" resultMap="playerLeaveHistoryResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,leaveID
+		,placeTime
+		,createTime
+		,updateTime
+		from
+		player_leave_history
+		<include refid="queryConditionPlayerLeaveHistory" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerLeaveHistory"
+		parameterClass="java.util.Map" resultMap="playerLeaveHistoryResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,leaveID
+		,placeTime
+		,createTime
+		,updateTime
+		from
+		player_leave_history
+		<include refid="queryConditionPlayerLeaveHistory" />
+	</select>
+
+	<select id="selectAllPlayerLeaveHistory" resultMap="playerLeaveHistoryResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,leaveID
+		,placeTime
+		,createTime
+		,updateTime
+		from
+		player_leave_history
+	</select>
+
+	<select id="selectSingleByParamsPlayerLeaveHistory"
+			parameterClass="java.util.Map" resultMap="playerLeaveHistoryResultMap">
+		select
+		id
+		,roleID
+		,`type`
+		,leaveID
+		,placeTime
+		,createTime
+		,updateTime
+		from
+		player_leave_history
+		<include refid="queryConditionPlayerLeaveHistory" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

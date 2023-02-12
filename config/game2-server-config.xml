@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+	<name>Game</name>
+	<id>1</id>
+	<port>9021</port>
+	<!--日志文件保存路径 -->
+	<logPath>/mnt/logs/</logPath>
+	<jsonPath>/mnt/json/</jsonPath>
+	<jsonUpdate>false</jsonUpdate>
+	<serverCdnUrl>http://127.0.0.1:8080/</serverCdnUrl>
+	<isFormal>false</isFormal>
+	<redis>
+		<isCluster>false</isCluster>
+		<host>127.0.0.1</host>
+		<port>6379</port>
+		<poolMaxTotal>128</poolMaxTotal>
+		<poolMaxIdle>10</poolMaxIdle>
+		<maxRedirections>10</maxRedirections>
+		<timeout>5000</timeout>
+		<prefix>dj</prefix>
+	</redis>
+</server>

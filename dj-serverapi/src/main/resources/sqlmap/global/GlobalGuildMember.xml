@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GlobalGuildMember">
+	<resultMap id="globalGuildMemberResultMap"
+		class="com.dj.domain.entity.global.GlobalGuildMember">
+		<result property="id" column="id" />
+		<result property="guildID" column="guildID" />
+		<result property="roleID" column="roleID" />
+		<result property="post" column="post" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionGlobalGuildMember">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="guildID"> guildID = #guildID# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyGlobalGuildMember">
+		where id = #id#
+	</sql>
+
+	<insert id="insertGlobalGuildMember"
+		parameterClass="com.dj.domain.entity.global.GlobalGuildMember">
+		insert into global_guild_member(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="guildID"> guildID </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="post"> post </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="guildID"> #guildID# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="post"> #post# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteGlobalGuildMember">
+		delete from global_guild_member
+		<include refid="queryByKeyGlobalGuildMember" />
+	</delete>
+
+	<update id="updateGlobalGuildMember"
+		parameterClass="com.dj.domain.entity.global.GlobalGuildMember">
+		update global_guild_member
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="guildID"> guildID = #guildID# </isNotNull>
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="post"> post = #post# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyGlobalGuildMember" />
+	</update>
+
+	<select id="selectSingleGlobalGuildMember"
+		resultMap="globalGuildMemberResultMap">
+		select
+		*
+		from
+		global_guild_member
+		<include refid="queryByKeyGlobalGuildMember" />
+	</select>
+
+	<select id="selectRecordsCountGlobalGuildMember"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from global_guild_member
+		<include refid="queryConditionGlobalGuildMember" />
+	</select>
+
+	<select id="selectMultiPagingGlobalGuildMember"
+		parameterClass="java.util.Map" resultMap="globalGuildMemberResultMap">
+		select
+		*
+		from
+		global_guild_member
+		<include refid="queryConditionGlobalGuildMember" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiGlobalGuildMember"
+		parameterClass="java.util.Map" resultMap="globalGuildMemberResultMap">
+		select
+		*
+		from
+		global_guild_member
+		<include refid="queryConditionGlobalGuildMember" />
+	</select>
+
+	<select id="selectAllGlobalGuildMember"
+		resultMap="globalGuildMemberResultMap">
+		select
+		*
+		from
+		global_guild_member
+	</select>
+
+	<select id="selectSingleByParamsGlobalGuildMember"
+			parameterClass="java.util.Map" resultMap="globalGuildMemberResultMap">
+		select
+		*
+		from
+		global_guild_member
+		<include refid="queryConditionGlobalGuildMember" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

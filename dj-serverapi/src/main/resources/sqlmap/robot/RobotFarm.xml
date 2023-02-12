@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RobotFarm">
+	<resultMap id="robotFarmResultMap"
+		class="com.dj.domain.entity.robot.RobotFarm">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="x" column="x" />
+		<result property="y" column="y" />
+		<result property="seed" column="seed" />
+		<result property="plaintTime" column="plaintTime" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionRobotFarm">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="x"> `x` = #x# </isNotNull>
+			<isNotNull prepend="and" property="y"> `y` = #y# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyRobotFarm">
+		where id = #id#
+	</sql>
+
+	<insert id="insertRobotFarm"
+		parameterClass="com.dj.domain.entity.robot.RobotFarm">
+		insert into robot_farm(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="x"> `x` </isNotNull>
+		<isNotNull prepend="," property="y"> `y` </isNotNull>
+		<isNotNull prepend="," property="seed"> seed </isNotNull>
+		<isNotNull prepend="," property="plaintTime"> plaintTime </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="x"> #x# </isNotNull>
+		<isNotNull prepend="," property="y"> #y# </isNotNull>
+		<isNotNull prepend="," property="seed"> #seed# </isNotNull>
+		<isNotNull prepend="," property="plaintTime"> #plaintTime# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteRobotFarm">
+		delete from robot_farm
+		<include refid="queryByKeyRobotFarm" />
+	</delete>
+
+	<update id="updateRobotFarm"
+		parameterClass="com.dj.domain.entity.robot.RobotFarm">
+		update robot_farm
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="x"> `x` = #x# </isNotNull>
+			<isNotNull prepend="," property="y"> `y` = #y# </isNotNull>
+			<isNotNull prepend="," property="seed"> seed = #seed# </isNotNull>
+			<isNotNull prepend="," property="plaintTime"> plaintTime = #plaintTime# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyRobotFarm" />
+	</update>
+
+	<select id="selectSingleRobotFarm" resultMap="robotFarmResultMap">
+		select
+		id
+		,roleID
+		,`x`
+		,`y`
+		,seed
+		,plaintTime
+		,createTime
+		,updateTime
+		from
+		robot_farm
+		<include refid="queryByKeyRobotFarm" />
+	</select>
+
+	<select id="selectRecordsCountRobotFarm"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from robot_farm
+		<include refid="queryConditionRobotFarm" />
+	</select>
+
+	<select id="selectMultiPagingRobotFarm"
+		parameterClass="java.util.Map" resultMap="robotFarmResultMap">
+		select
+		id
+		,roleID
+		,`x`
+		,`y`
+		,seed
+		,plaintTime
+		,createTime
+		,updateTime
+		from
+		robot_farm
+		<include refid="queryConditionRobotFarm" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiRobotFarm"
+		parameterClass="java.util.Map" resultMap="robotFarmResultMap">
+		select
+		id
+		,roleID
+		,`x`
+		,`y`
+		,seed
+		,plaintTime
+		,createTime
+		,updateTime
+		from
+		robot_farm
+		<include refid="queryConditionRobotFarm" />
+	</select>
+
+	<select id="selectAllRobotFarm" resultMap="robotFarmResultMap">
+		select
+		id
+		,roleID
+		,`x`
+		,`y`
+		,seed
+		,plaintTime
+		,createTime
+		,updateTime
+		from
+		robot_farm
+	</select>
+
+	<select id="selectSingleByParamsRobotFarm"
+			parameterClass="java.util.Map" resultMap="robotFarmResultMap">
+		select
+		id
+		,roleID
+		,`x`
+		,`y`
+		,seed
+		,plaintTime
+		,createTime
+		,updateTime
+		from
+		robot_farm
+		<include refid="queryConditionRobotFarm" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

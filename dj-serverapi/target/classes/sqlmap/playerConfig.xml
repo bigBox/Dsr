@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings useStatementNamespaces = "true"
+			  cacheModelsEnabled  = "false"
+			  enhancementEnabled  = "true"
+			  lazyLoadingEnabled  = "true"
+			  errorTracingEnabled  = "true"
+			  maxRequests    = "512"
+			  maxSessions    = "128"
+			  maxTransactions   = "16"/>
+	<sqlMap resource="sqlmap/player/PlayerAccount.xml" />
+	<sqlMap resource="sqlmap/player/PlayerRole.xml" />
+	<sqlMap resource="sqlmap/player/PlayerFactory.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem1.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem2.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem3.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem4.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem5.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem6.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem7.xml" />
+	<sqlMap resource="sqlmap/player/item/PlayerItem100.xml" />
+	<sqlMap resource="sqlmap/player/PlayerFriend.xml" />
+	<sqlMap resource="sqlmap/player/PlayerGameScoreRank.xml" />
+	<sqlMap resource="sqlmap/player/PlayerVerify.xml" />
+	<sqlMap resource="sqlmap/player/PlayerVerifyHistory.xml" />
+	<sqlMap resource="sqlmap/player/PlayerGuide.xml" />
+	<sqlMap resource="sqlmap/player/PlayerObstacle.xml" />
+	<sqlMap resource="sqlmap/player/PlayerShowTable.xml" />
+	<sqlMap resource="sqlmap/player/PlayerShowTableInfo.xml" />
+	<sqlMap resource="sqlmap/player/PlayerShowTableMoney.xml" />
+	<sqlMap resource="sqlmap/player/PlayerManufacture.xml" />
+	<sqlMap resource="sqlmap/player/PlayerCollection.xml" />
+	<sqlMap resource="sqlmap/player/PlayerFarm.xml" />
+	<sqlMap resource="sqlmap/player/task/PlayerTask1.xml" />
+	<sqlMap resource="sqlmap/player/task/PlayerTask2.xml" />
+	<sqlMap resource="sqlmap/player/task/PlayerTask3.xml" />
+	<sqlMap resource="sqlmap/player/task/PlayerTask4.xml" />
+	<sqlMap resource="sqlmap/player/task/GuildTask.xml" />
+	<sqlMap resource="sqlmap/player/PlayerBook.xml" />
+	<sqlMap resource="sqlmap/player/PlayerNpc.xml" />
+	<sqlMap resource="sqlmap/player/PlayerItemInteractHistory.xml" />
+	<sqlMap resource="sqlmap/player/PlayerLeaveHistory.xml" />
+	<sqlMap resource="sqlmap/player/PlayerUserInfo.xml" />
+	<sqlMap resource="sqlmap/player/SmsCode.xml" />
+	<sqlMap resource="sqlmap/player/WxPay.xml" />
+	<sqlMap resource="sqlmap/player/AliPay.xml" />
+</sqlMapConfig>

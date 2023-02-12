@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings useStatementNamespaces = "true"
+			  cacheModelsEnabled  = "false"
+			  enhancementEnabled  = "true"
+			  lazyLoadingEnabled  = "true"
+			  errorTracingEnabled  = "true"
+			  maxRequests    = "512"
+			  maxSessions    = "128"
+			  maxTransactions   = "16"/>
+	<sqlMap resource="sqlmap/global/GlobalGuild.xml" />
+	<sqlMap resource="sqlmap/global/GlobalGuildMember.xml" />
+	<sqlMap resource="sqlmap/global/GlobalTradeHistory.xml" />
+	<sqlMap resource="sqlmap/global/GlobalTradeHistoryImport.xml" />
+	<sqlMap resource="sqlmap/global/GlobalTradeOrder.xml" />
+	<sqlMap resource="sqlmap/global/GlobalTradeRecord.xml" />
+	<sqlMap resource="sqlmap/global/GlobalTradeStock.xml" />
+</sqlMapConfig>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RobotShowTable">
+	<resultMap id="robotShowTableResultMap"
+		class="com.dj.domain.entity.robot.RobotShowTable">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="itemID" column="itemID" />
+		<result property="type" column="type" />
+		<result property="page" column="page" />
+		<result property="index" column="index" />
+		<result property="x" column="x" />
+		<result property="y" column="y" />
+		<result property="suitID" column="suitID" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionRobotShowTable">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="and" property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="and" property="page"> page = #page# </isNotNull>
+			<isNotNull prepend="and" property="index"> `index` = #index# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyRobotShowTable">
+		where id = #id#
+	</sql>
+
+	<insert id="insertRobotShowTable"
+		parameterClass="com.dj.domain.entity.robot.RobotShowTable">
+		insert into robot_showtable(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="type"> `type` </isNotNull>
+		<isNotNull prepend="," property="page"> page </isNotNull>
+		<isNotNull prepend="," property="index"> `index` </isNotNull>
+		<isNotNull prepend="," property="x"> x </isNotNull>
+		<isNotNull prepend="," property="y"> y </isNotNull>
+		<isNotNull prepend="," property="suitID"> suitID </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="type"> #type# </isNotNull>
+		<isNotNull prepend="," property="page"> #page# </isNotNull>
+		<isNotNull prepend="," property="index"> #index# </isNotNull>
+		<isNotNull prepend="," property="x"> #x# </isNotNull>
+		<isNotNull prepend="," property="y"> #y# </isNotNull>
+		<isNotNull prepend="," property="suitID"> #suitID# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteRobotShowTable">
+		delete from robot_showtable
+		<include refid="queryByKeyRobotShowTable" />
+	</delete>
+
+	<update id="updateRobotShowTable"
+		parameterClass="com.dj.domain.entity.robot.RobotShowTable">
+		update robot_showtable
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="type"> `type` = #type# </isNotNull>
+			<isNotNull prepend="," property="page"> page = #page# </isNotNull>
+			<isNotNull prepend="," property="index"> `index` = #index# </isNotNull>
+			<isNotNull prepend="," property="x"> x = #x# </isNotNull>
+			<isNotNull prepend="," property="y"> y = #y# </isNotNull>
+			<isNotNull prepend="," property="suitID"> suitID = #suitID# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyRobotShowTable" />
+	</update>
+
+	<select id="selectSingleRobotShowTable"
+		resultMap="robotShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		robot_showtable
+		<include refid="queryByKeyRobotShowTable" />
+	</select>
+
+	<select id="selectRecordsCountRobotShowTable"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from robot_showtable
+		<include refid="queryConditionRobotShowTable" />
+	</select>
+
+	<select id="selectMultiPagingRobotShowTable"
+		parameterClass="java.util.Map" resultMap="robotShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		robot_showtable
+		<include refid="queryConditionRobotShowTable" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiRobotShowTable"
+		parameterClass="java.util.Map" resultMap="robotShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		robot_showtable
+		<include refid="queryConditionRobotShowTable" />
+	</select>
+
+	<select id="selectAllRobotShowTable"
+		resultMap="robotShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		robot_showtable
+	</select>
+
+	<select id="selectSingleByParamsRobotShowTable"
+			parameterClass="java.util.Map" resultMap="robotShowTableResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,`type`
+		,page
+		,`index`
+		,x
+		,y
+		,suitID
+		,createTime
+		,updateTime
+		from
+		robot_showtable
+		<include refid="queryConditionRobotShowTable" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

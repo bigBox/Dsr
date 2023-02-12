@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerTask1">
+	<resultMap id="playerTaskResultMap1"
+		class="com.dj.domain.entity.player.task.PlayerTask1">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="taskID" column="taskID" />
+		<result property="index" column="index" />
+		<result property="actionType" column="actionType" />
+		<result property="actionTime" column="actionTime" />
+		<result property="actionType1" column="actionType1" />
+		<result property="actionTime1" column="actionTime1" />
+		<result property="state" column="state" />
+		<result property="first" column="first" />
+		<result property="needItem" column="needItem" />
+		<result property="curItem" column="curItem" />
+		<result property="lastLoginTime" column="lastLoginTime" />
+		<result property="extra" column="extra" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerTask1">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="taskID"> taskID = #taskID# </isNotNull>
+			<isNotNull prepend="and" property="index"> `index` = #index# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerTask1">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerTask1"
+		parameterClass="com.dj.domain.entity.player.task.PlayerTask1">
+		insert into player_task1(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="taskID"> taskID </isNotNull>
+		<isNotNull prepend="," property="index"> `index` </isNotNull>
+		<isNotNull prepend="," property="actionType"> actionType </isNotNull>
+		<isNotNull prepend="," property="actionTime"> actionTime </isNotNull>
+		<isNotNull prepend="," property="actionType1"> actionType1 </isNotNull>
+		<isNotNull prepend="," property="actionTime1"> actionTime1 </isNotNull>
+		<isNotNull prepend="," property="state"> `state` </isNotNull>
+		<isNotNull prepend="," property="first"> `first` </isNotNull>
+		<isNotNull prepend="," property="needItem"> needItem </isNotNull>
+		<isNotNull prepend="," property="curItem"> curItem </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> lastLoginTime </isNotNull>
+		<isNotNull prepend="," property="extra"> extra </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="taskID"> #taskID# </isNotNull>
+		<isNotNull prepend="," property="index"> #index# </isNotNull>
+		<isNotNull prepend="," property="actionType"> #actionType# </isNotNull>
+		<isNotNull prepend="," property="actionTime"> #actionTime# </isNotNull>
+		<isNotNull prepend="," property="actionType1"> #actionType1# </isNotNull>
+		<isNotNull prepend="," property="actionTime1"> #actionTime1# </isNotNull>
+		<isNotNull prepend="," property="state"> #state# </isNotNull>
+		<isNotNull prepend="," property="first"> #first# </isNotNull>
+		<isNotNull prepend="," property="needItem"> #needItem# </isNotNull>
+		<isNotNull prepend="," property="curItem"> #curItem# </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> #lastLoginTime# </isNotNull>
+		<isNotNull prepend="," property="extra"> #extra# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerTask1">
+		delete from player_task1
+		<include refid="queryByKeyPlayerTask1" />
+	</delete>
+
+	<update id="updatePlayerTask1"
+		parameterClass="com.dj.domain.entity.player.task.PlayerTask1">
+		update player_task1
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="taskID"> taskID = #taskID# </isNotNull>
+			<isNotNull prepend="," property="index"> `index` = #index# </isNotNull>
+			<isNotNull prepend="," property="actionType"> actionType = #actionType# </isNotNull>
+			<isNotNull prepend="," property="actionTime"> actionTime = #actionTime# </isNotNull>
+			<isNotNull prepend="," property="actionType1"> actionType1 = #actionType1# </isNotNull>
+			<isNotNull prepend="," property="actionTime1"> actionTime1 = #actionTime1# </isNotNull>
+			<isNotNull prepend="," property="state"> `state` = #state# </isNotNull>
+			<isNotNull prepend="," property="first"> `first` = #first# </isNotNull>
+			<isNotNull prepend="," property="needItem"> needItem = #needItem# </isNotNull>
+			<isNotNull prepend="," property="curItem"> curItem = #curItem# </isNotNull>
+			<isNotNull prepend="," property="lastLoginTime"> lastLoginTime = #lastLoginTime# </isNotNull>
+			<isNotNull prepend="," property="extra"> extra = #extra# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerTask1" />
+	</update>
+
+	<select id="selectSinglePlayerTask1" resultMap="playerTaskResultMap1">
+		select
+		id
+		,roleID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,extra
+		,createTime
+		,updateTime
+		from
+		player_task1
+		<include refid="queryByKeyPlayerTask1" />
+	</select>
+
+	<select id="selectRecordsCountPlayerTask1"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_task1
+		<include refid="queryConditionPlayerTask1" />
+	</select>
+
+	<select id="selectMultiPagingPlayerTask1"
+		parameterClass="java.util.Map" resultMap="playerTaskResultMap1">
+		select
+		id
+		,roleID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,extra
+		,createTime
+		,updateTime
+		from
+		player_task1
+		<include refid="queryConditionPlayerTask1" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerTask1"
+		parameterClass="java.util.Map" resultMap="playerTaskResultMap1">
+		select
+		id
+		,roleID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,extra
+		,createTime
+		,updateTime
+		from
+		player_task1
+		<include refid="queryConditionPlayerTask1" />
+	</select>
+
+	<select id="selectAllPlayerTask1" resultMap="playerTaskResultMap1">
+		select
+		id
+		,roleID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,extra
+		,createTime
+		,updateTime
+		from
+		player_task1
+	</select>
+
+	<select id="selectSingleByParamsPlayerTask1"
+		parameterClass="java.util.Map" resultMap="playerTaskResultMap1">
+		select
+		id
+		,roleID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,extra
+		,createTime
+		,updateTime
+		from
+		player_task1
+		<include refid="queryConditionPlayerTask1" />
+		and `state` != 3
+		limit 1
+	</select>
+
+</sqlMap>
+	

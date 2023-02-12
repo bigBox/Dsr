@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerRole">
+	<resultMap id="playerRoleResultMap"
+		class="com.dj.domain.entity.player.PlayerRole">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="roleName" column="roleName" />
+		<result property="level" column="level" />
+		<result property="levelTime" column="levelTime" />
+		<result property="experience" column="experience" />
+		<result property="gold" column="gold" />
+		<result property="stamina" column="stamina" />
+		<result property="diamond" column="diamond" />
+		<result property="showTable" column="showTable" />
+		<result property="showTableLevel" column="showTableLevel" />
+		<result property="renown" column="renown" />
+		<result property="renownLevel" column="renownLevel" />
+		<result property="achievement" column="achievement" />
+		<result property="achievementLevel" column="achievementLevel" />
+		<result property="ecology" column="ecology" />
+		<result property="boom" column="boom" />
+		<result property="guildId" column="guildId" />
+		<result property="guildScore" column="guildScore" />
+		<result property="post" column="post" />
+		<result property="channel" column="channel" />
+		<result property="signature" column="signature" />
+		<result property="playerServerID" column="playerServerID" />
+		<result property="gateServerID" column="gateServerID" />
+		<result property="lastLoginTime" column="lastLoginTime" />
+		<result property="totalOnline" column="totalOnline" />
+		<result property="todayOnline" column="todayOnline" />
+		<result property="fiveEle" column="fiveEle" />
+		<result property="repairCount" column="repairCount" />
+		<result property="guideId" column="guideId" />
+		<result property="guideState" column="guideState" />
+		<result property="guideTaskId" column="guideTaskId" />
+		<result property="guideTaskState" column="guideTaskState" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerRole">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="roleName"> roleName = #roleName#	</isNotNull>
+			<isNotNull prepend="and" property="likeId"> roleID like #likeId# limit 3 </isNotNull>
+			<isNotNull prepend="and" property="likeName"> `roleName` like #likeName# limit 3 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerRole">
+		where roleID = #roleID#
+	</sql>
+
+	<insert id="insertPlayerRole"
+		parameterClass="com.dj.domain.entity.player.PlayerRole">
+		insert into player_role(
+		<isNotNull prepend="" property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="roleName"> roleName </isNotNull>
+		<isNotNull prepend="," property="level"> level </isNotNull>
+		<isNotNull prepend="," property="levelTime"> levelTime </isNotNull>
+		<isNotNull prepend="," property="experience"> experience </isNotNull>
+		<isNotNull prepend="," property="gold"> gold </isNotNull>
+		<isNotNull prepend="," property="stamina"> stamina </isNotNull>
+		<isNotNull prepend="," property="diamond"> diamond </isNotNull>
+		<isNotNull prepend="," property="showTable"> showTable </isNotNull>
+		<isNotNull prepend="," property="showTableLevel"> showTableLevel </isNotNull>
+		<isNotNull prepend="," property="renown"> renown </isNotNull>
+		<isNotNull prepend="," property="renownLevel"> renownLevel </isNotNull>
+		<isNotNull prepend="," property="achievement"> achievement </isNotNull>
+		<isNotNull prepend="," property="achievementLevel"> achievementLevel </isNotNull>
+		<isNotNull prepend="," property="ecology"> ecology </isNotNull>
+		<isNotNull prepend="," property="boom"> boom </isNotNull>
+		<isNotNull prepend="," property="guildId"> guildId </isNotNull>
+		<isNotNull prepend="," property="guildScore"> guildScore </isNotNull>
+		<isNotNull prepend="," property="post"> post </isNotNull>
+		<isNotNull prepend="," property="channel"> channel </isNotNull>
+		<isNotNull prepend="," property="signature"> signature </isNotNull>
+		<isNotNull prepend="," property="playerServerID"> playerServerID </isNotNull>
+		<isNotNull prepend="," property="gateServerID"> gateServerID </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> lastLoginTime </isNotNull>
+		<isNotNull prepend="," property="totalOnline"> totalOnline </isNotNull>
+		<isNotNull prepend="," property="todayOnline"> todayOnline </isNotNull>
+		<isNotNull prepend="," property="fiveEle"> fiveEle </isNotNull>
+		<isNotNull prepend="," property="repairCount"> repairCount </isNotNull>
+		<isNotNull prepend="," property="guideId"> guideId </isNotNull>
+		<isNotNull prepend="," property="guideState"> guideState </isNotNull>
+		<isNotNull prepend="," property="guideTaskId"> guideTaskId </isNotNull>
+		<isNotNull prepend="," property="guideTaskState"> guideTaskState </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="roleName"> #roleName# </isNotNull>
+		<isNotNull prepend="," property="level"> #level# </isNotNull>
+		<isNotNull prepend="," property="levelTime"> #levelTime# </isNotNull>
+		<isNotNull prepend="," property="experience"> #experience# </isNotNull>
+		<isNotNull prepend="," property="gold"> #gold# </isNotNull>
+		<isNotNull prepend="," property="stamina"> #stamina# </isNotNull>
+		<isNotNull prepend="," property="diamond"> #diamond# </isNotNull>
+		<isNotNull prepend="," property="showTable"> #showTable# </isNotNull>
+		<isNotNull prepend="," property="showTableLevel"> #showTableLevel#</isNotNull>
+		<isNotNull prepend="," property="renown"> #renown# </isNotNull>
+		<isNotNull prepend="," property="renownLevel"> #renownLevel# </isNotNull>
+		<isNotNull prepend="," property="achievement"> #achievement# </isNotNull>
+		<isNotNull prepend="," property="achievementLevel"> #achievementLevel# </isNotNull>
+		<isNotNull prepend="," property="ecology"> #ecology# </isNotNull>
+		<isNotNull prepend="," property="boom"> #boom# </isNotNull>
+		<isNotNull prepend="," property="guildId"> #guildId# </isNotNull>
+		<isNotNull prepend="," property="guildScore"> #guildScore# </isNotNull>
+		<isNotNull prepend="," property="post"> #post# </isNotNull>
+		<isNotNull prepend="," property="channel"> #channel# </isNotNull>
+		<isNotNull prepend="," property="signature"> #signature# </isNotNull>
+		<isNotNull prepend="," property="playerServerID"> #playerServerID#</isNotNull>
+		<isNotNull prepend="," property="gateServerID"> #gateServerID# </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> #lastLoginTime# </isNotNull>
+		<isNotNull prepend="," property="totalOnline"> #totalOnline# </isNotNull>
+		<isNotNull prepend="," property="todayOnline"> #todayOnline# </isNotNull>
+		<isNotNull prepend="," property="fiveEle"> #fiveEle# </isNotNull>
+		<isNotNull prepend="," property="repairCount"> #repairCount# </isNotNull>
+		<isNotNull prepend="," property="guideId"> #guideId# </isNotNull>
+		<isNotNull prepend="," property="guideState"> #guideState# </isNotNull>
+		<isNotNull prepend="," property="guideTaskId"> #guideTaskId# </isNotNull>
+		<isNotNull prepend="," property="guideTaskState"> #guideTaskState# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerRole">
+		delete from player_role
+		<include refid="queryByKeyPlayerRole" />
+	</delete>
+
+	<update id="updatePlayerRole"
+		parameterClass="com.dj.domain.entity.player.PlayerRole">
+		update player_role
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleName"> roleName = #roleName# </isNotNull>
+			<isNotNull prepend="," property="level"> `level` = #level# </isNotNull>
+			<isNotNull prepend="," property="levelTime"> levelTime = #levelTime#</isNotNull>
+			<isNotNull prepend="," property="experience"> experience = #experience#	</isNotNull>
+			<isNotNull prepend="," property="gold"> gold = #gold# </isNotNull>
+			<isNotNull prepend="," property="stamina"> stamina = #stamina# </isNotNull>
+			<isNotNull prepend="," property="diamond"> diamond = #diamond# </isNotNull>
+			<isNotNull prepend="," property="showTable"> showTable = #showTable# </isNotNull>
+			<isNotNull prepend="," property="showTableLevel"> showTableLevel = #showTableLevel#	</isNotNull>
+			<isNotNull prepend="," property="renown"> renown = #renown#	</isNotNull>
+			<isNotNull prepend="," property="renownLevel"> renownLevel = #renownLevel# </isNotNull>
+			<isNotNull prepend="," property="achievement"> achievement = #achievement# </isNotNull>
+			<isNotNull prepend="," property="achievementLevel"> achievementLevel = #achievementLevel# </isNotNull>
+			<isNotNull prepend="," property="ecology"> ecology = #ecology# </isNotNull>
+			<isNotNull prepend="," property="boom"> boom = #boom# </isNotNull>
+			<isNotNull prepend="," property="guildId"> guildId = #guildId# </isNotNull>
+			<isNotNull prepend="," property="guildScore"> guildScore = #guildScore# </isNotNull>
+			<isNotNull prepend="," property="post"> post = #post# </isNotNull>
+			<isNotNull prepend="," property="channel"> channel = #channel# </isNotNull>
+			<isNotNull prepend="," property="signature"> signature = #signature# </isNotNull>
+			<isNotNull prepend="," property="playerServerID"> playerServerID = #playerServerID#	</isNotNull>
+			<isNotNull prepend="," property="gateServerID"> gateServerID = #gateServerID# </isNotNull>
+			<isNotNull prepend="," property="lastLoginTime"> lastLoginTime = #lastLoginTime# </isNotNull>
+			<isNotNull prepend="," property="totalOnline"> totalOnline = #totalOnline# </isNotNull>
+			<isNotNull prepend="," property="todayOnline"> todayOnline = #todayOnline# </isNotNull>
+			<isNotNull prepend="," property="fiveEle"> fiveEle = #fiveEle# </isNotNull>
+			<isNotNull prepend="," property="repairCount"> repairCount = #repairCount# </isNotNull>
+			<isNotNull prepend="," property="guideId"> guideId = #guideId# </isNotNull>
+			<isNotNull prepend="," property="guideState"> guideState = #guideState#	</isNotNull>
+			<isNotNull prepend="," property="guideTaskId"> guideTaskId =#guideTaskId# </isNotNull>
+			<isNotNull prepend="," property="guideTaskState"> guideTaskState =#guideTaskState# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime#	</isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime#	</isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerRole" />
+	</update>
+
+	<select id="selectSinglePlayerRole" resultMap="playerRoleResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,`level`
+		,levelTime
+		,experience
+		,gold
+		,stamina
+		,diamond
+		,showTable
+		,showTableLevel
+		,renown
+		,renownLevel
+		,achievement
+		,achievementLevel
+		,ecology
+		,boom
+		,guildId
+		,guildScore
+		,post
+		,channel
+		,signature
+		,playerServerID
+		,gateServerID
+		,lastLoginTime
+		,totalOnline
+		,todayOnline
+		,fiveEle
+		,repairCount
+		,guideId
+		,guideState
+		,guideTaskId
+		,guideTaskState
+		,createTime
+		,updateTime
+		from player_role
+		<include refid="queryByKeyPlayerRole" />
+	</select>
+
+	<select id="selectRecordsCountPlayerRole"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_role
+		<include refid="queryConditionPlayerRole" />
+	</select>
+
+	<select id="selectMultiPagingPlayerRole"
+		parameterClass="java.util.Map" resultMap="playerRoleResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,`level`
+		,levelTime
+		,experience
+		,gold
+		,stamina
+		,diamond
+		,showTable
+		,showTableLevel
+		,renown
+		,renownLevel
+		,achievement
+		,achievementLevel
+		,ecology
+		,boom
+		,guildId
+		,guildScore
+		,post
+		,channel
+		,signature
+		,playerServerID
+		,gateServerID
+		,lastLoginTime
+		,totalOnline
+		,todayOnline
+		,fiveEle
+		,repairCount
+		,guideId
+		,guideState
+		,guideTaskId
+		,guideTaskState
+		,createTime
+		,updateTime
+		from player_role
+		<include refid="queryConditionPlayerRole" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerRole"
+		parameterClass="java.util.Map" resultMap="playerRoleResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,`level`
+		,levelTime
+		,experience
+		,gold
+		,stamina
+		,diamond
+		,showTable
+		,showTableLevel
+		,renown
+		,renownLevel
+		,achievement
+		,achievementLevel
+		,ecology
+		,boom
+		,guildId
+		,guildScore
+		,post
+		,channel
+		,signature
+		,playerServerID
+		,gateServerID
+		,lastLoginTime
+		,totalOnline
+		,todayOnline
+		,fiveEle
+		,repairCount
+		,guideId
+		,guideState
+		,guideTaskId
+		,guideTaskState
+		,createTime
+		,updateTime
+		from player_role
+		<include refid="queryConditionPlayerRole" />
+	</select>
+
+	<select id="selectAllPlayerRole" resultMap="playerRoleResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,`level`
+		,levelTime
+		,experience
+		,gold
+		,stamina
+		,diamond
+		,showTable
+		,showTableLevel
+		,renown
+		,renownLevel
+		,achievement
+		,achievementLevel
+		,ecology
+		,boom
+		,guildId
+		,guildScore
+		,post
+		,channel
+		,signature
+		,playerServerID
+		,gateServerID
+		,lastLoginTime
+		,totalOnline
+		,todayOnline
+		,fiveEle
+		,repairCount
+		,guideId
+		,guideState
+		,guideTaskId
+		,guideTaskState
+		,createTime
+		,updateTime
+		from player_role
+	</select>
+
+	<select id="selectSingleByParamsPlayerRole"
+			parameterClass="java.util.Map" resultMap="playerRoleResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,`level`
+		,levelTime
+		,experience
+		,gold
+		,stamina
+		,diamond
+		,showTable
+		,showTableLevel
+		,renown
+		,renownLevel
+		,achievement
+		,achievementLevel
+		,ecology
+		,boom
+		,guildId
+		,guildScore
+		,post
+		,channel
+		,signature
+		,playerServerID
+		,gateServerID
+		,lastLoginTime
+		,totalOnline
+		,todayOnline
+		,fiveEle
+		,repairCount
+		,guideId
+		,guideState
+		,guideTaskId
+		,guideTaskState
+		,createTime
+		,updateTime
+		from player_role
+		<include refid="queryConditionPlayerRole" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

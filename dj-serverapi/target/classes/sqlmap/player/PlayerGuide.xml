@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerGuide">
+	<resultMap id="playerGuideResultMap"
+		class="com.dj.domain.entity.player.PlayerGuide">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="guideId" column="guideId" />
+		<result property="state" column="state" />
+		<result property="arg" column="arg" />
+		<result property="exData" column="exData" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerGuide">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="guideId"> guideId = #guideId# </isNotNull>
+			<isNotNull prepend="and" property="state"> `state` = #state# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerGuide">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerGuide"
+		parameterClass="com.dj.domain.entity.player.PlayerGuide">
+		insert into player_guide(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="guideId"> guideId </isNotNull>
+		<isNotNull prepend="," property="state"> `state` </isNotNull>
+		<isNotNull prepend="," property="arg"> arg </isNotNull>
+		<isNotNull prepend="," property="exData"> exData </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="guideId"> #guideId# </isNotNull>
+		<isNotNull prepend="," property="state"> #state# </isNotNull>
+		<isNotNull prepend="," property="arg"> #arg# </isNotNull>
+		<isNotNull prepend="," property="exData"> #exData# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerGuide">
+		delete from player_guide
+		<include refid="queryByKeyPlayerGuide" />
+	</delete>
+
+	<update id="updatePlayerGuide"
+		parameterClass="com.dj.domain.entity.player.PlayerGuide">
+		update player_guide
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="guideId"> guideId = #guideId# </isNotNull>
+			<isNotNull prepend="," property="state"> state = #state# </isNotNull>
+			<isNotNull prepend="," property="arg"> arg = #arg# </isNotNull>
+			<isNotNull prepend="," property="exData"> exData = #exData# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerGuide" />
+	</update>
+
+	<select id="selectSinglePlayerGuide" resultMap="playerGuideResultMap">
+		select
+		id
+		,roleID
+		,guideId
+		,`state`
+		,arg
+		,exData
+		,createTime
+		,updateTime
+		from
+		player_guide
+		<include refid="queryByKeyPlayerGuide" />
+	</select>
+
+	<select id="selectRecordsCountPlayerGuide"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_guide
+		<include refid="queryConditionPlayerGuide" />
+	</select>
+
+	<select id="selectMultiPagingPlayerGuide"
+		parameterClass="java.util.Map" resultMap="playerGuideResultMap">
+		select
+		id
+		,roleID
+		,guideId
+		,`state`
+		,arg
+		,exData
+		,createTime
+		,updateTime
+		from
+		player_guide
+		<include refid="queryConditionPlayerGuide" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerGuide"
+		parameterClass="java.util.Map" resultMap="playerGuideResultMap">
+		select
+		id
+		,roleID
+		,guideId
+		,`state`
+		,arg
+		,exData
+		,createTime
+		,updateTime
+		from
+		player_guide
+		<include refid="queryConditionPlayerGuide" />
+	</select>
+
+	<select id="selectAllPlayerGuide" resultMap="playerGuideResultMap">
+		select
+		id
+		,roleID
+		,guideId
+		,`state`
+		,arg
+		,exData
+		,createTime
+		,updateTime
+		from
+		player_guide
+	</select>
+
+	<select id="selectSingleByParamsPlayerGuide"
+			parameterClass="java.util.Map" resultMap="playerGuideResultMap">
+		select
+		id
+		,roleID
+		,guideId
+		,`state`
+		,arg
+		,exData
+		,buildingK
+		,buildingV
+		,createTime
+		,updateTime
+		from player_guide
+		<include refid="queryConditionPlayerGuide" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

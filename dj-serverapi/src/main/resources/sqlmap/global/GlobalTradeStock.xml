@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GlobalTradeStock">
+	<resultMap id="globalTradeStockResultMap"
+		class="com.dj.domain.entity.global.GlobalTradeStock">
+		<result property="id" column="id" />
+		<result property="itemID" column="itemID" />
+		<result property="startPrice" column="startPrice" />
+		<result property="endPrice" column="endPrice" />
+		<result property="lastPrice" column="lastPrice" />
+		<result property="lowestPrice" column="lowestPrice" />
+		<result property="highestPrice" column="highestPrice" />
+		<result property="score" column="score" />
+		<result property="turnover" column="turnover" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+		<result property="importID" column="importID" />
+	</resultMap>
+
+	<sql id="queryConditionGlobalTradeStock">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyGlobalTradeStock">
+		where itemID = #itemID#
+	</sql>
+
+	<insert id="insertGlobalTradeStock"
+		parameterClass="com.dj.domain.entity.global.GlobalTradeStock">
+		insert into global_trade_stock(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="startPrice"> startPrice </isNotNull>
+		<isNotNull prepend="," property="endPrice"> endPrice </isNotNull>
+		<isNotNull prepend="," property="lastPrice"> lastPrice </isNotNull>
+		<isNotNull prepend="," property="lowestPrice"> lowestPrice </isNotNull>
+		<isNotNull prepend="," property="highestPrice"> highestPrice </isNotNull>
+		<isNotNull prepend="," property="score"> score </isNotNull>
+		<isNotNull prepend="," property="turnover"> turnover </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		<isNotNull prepend="," property="importID"> importID </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="startPrice"> #startPrice# </isNotNull>
+		<isNotNull prepend="," property="endPrice"> #endPrice# </isNotNull>
+		<isNotNull prepend="," property="lastPrice"> #lastPrice# </isNotNull>
+		<isNotNull prepend="," property="lowestPrice"> #lowestPrice# </isNotNull>
+		<isNotNull prepend="," property="highestPrice"> #highestPrice# </isNotNull>
+		<isNotNull prepend="," property="score"> #score# </isNotNull>
+		<isNotNull prepend="," property="turnover"> #turnover# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		<isNotNull prepend="," property="importID"> #importID# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteGlobalTradeStock">
+		delete from global_trade_stock
+		<include refid="queryByKeyGlobalTradeStock" />
+	</delete>
+
+	<update id="updateGlobalTradeStock"
+		parameterClass="com.dj.domain.entity.global.GlobalTradeStock">
+		update global_trade_stock
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="startPrice"> startPrice = #startPrice# </isNotNull>
+			<isNotNull prepend="," property="endPrice"> endPrice = #endPrice# </isNotNull>
+			<isNotNull prepend="," property="lastPrice"> lastPrice = #lastPrice# </isNotNull>
+			<isNotNull prepend="," property="lowestPrice"> lowestPrice = #lowestPrice# </isNotNull>
+			<isNotNull prepend="," property="highestPrice"> highestPrice = #highestPrice# </isNotNull>
+			<isNotNull prepend="," property="score"> score = #score# </isNotNull>
+			<isNotNull prepend="," property="turnover"> turnover = #turnover# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime#	</isNotNull>
+			<isNotNull prepend="," property="importID"> importID = #importID#	</isNotNull>
+		</dynamic>
+		<include refid="queryByKeyGlobalTradeStock" />
+	</update>
+
+	<select id="selectSingleGlobalTradeStock"
+		resultMap="globalTradeStockResultMap">
+		select
+		id
+		,itemID
+		,startPrice
+		,endPrice
+		,lastPrice
+		,lowestPrice
+		,highestPrice
+		,score
+		,turnover
+		,createTime
+		,updateTime
+		,importID
+		from
+		global_trade_stock
+		<include refid="queryByKeyGlobalTradeStock" />
+	</select>
+
+	<select id="selectRecordsCountGlobalTradeStock"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from global_trade_stock
+		<include refid="queryConditionGlobalTradeStock" />
+	</select>
+
+	<select id="selectMultiPagingGlobalTradeStock"
+		parameterClass="java.util.Map" resultMap="globalTradeStockResultMap">
+		select
+		id
+		,itemID
+		,startPrice
+		,endPrice
+		,lastPrice
+		,lowestPrice
+		,highestPrice
+		,score
+		,turnover
+		,createTime
+		,updateTime
+		,importID
+		from
+		global_trade_stock
+		<include refid="queryConditionGlobalTradeStock" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiGlobalTradeStock"
+		parameterClass="java.util.Map" resultMap="globalTradeStockResultMap">
+		select
+		id
+		,itemID
+		,startPrice
+		,endPrice
+		,lastPrice
+		,lowestPrice
+		,highestPrice
+		,score
+		,turnover
+		,createTime
+		,updateTime
+		,importID
+		from
+		global_trade_stock
+		<include refid="queryConditionGlobalTradeStock" />
+	</select>
+
+	<select id="selectAllGlobalTradeStock"
+		resultMap="globalTradeStockResultMap">
+		select
+		id
+		,itemID
+		,startPrice
+		,endPrice
+		,lastPrice
+		,lowestPrice
+		,highestPrice
+		,score
+		,turnover
+		,createTime
+		,updateTime
+		,importID
+		from
+		global_trade_stock
+	</select>
+
+	<select id="selectSingleByParamsGlobalTradeStock"
+			parameterClass="java.util.Map" resultMap="globalTradeStockResultMap">
+		select
+		id
+		,itemID
+		,startPrice
+		,endPrice
+		,lastPrice
+		,lowestPrice
+		,highestPrice
+		,score
+		,turnover
+		,createTime
+		,updateTime
+		,importID
+		from
+		global_trade_stock
+		<include refid="queryConditionGlobalTradeStock" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,34 @@
+package com.dj.domain.config;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+/**
+ * 此类由工具生成，请勿手动改写
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+public class ConfigSummonPackageCount{
+	
+	/**
+	 * @Field ID : 序号
+	 */
+	protected int ID;
+
+	/**
+	 * @Field Weight : 权重
+	 */
+	protected int Weight;
+
+	/**
+	 * @Field Count : 包裹个数
+	 */
+	protected int Count;
+
+
+
+}

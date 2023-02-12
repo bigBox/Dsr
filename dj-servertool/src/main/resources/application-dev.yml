@@ -1,0 +1,37 @@
+# 工具数据库
+tool:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dj-tool?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: 8525827xdq
+    filters: wall,mergeStat
+    data-source-name: tooldb
+
+#网站数据库
+site:
+  datasource:
+    open: true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dj-website?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: 8525827xdq
+    data-source-name: sitedb
+
+#日志数据库
+log:
+  datasource:
+    open: true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dj-log?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: 8525827xdq
+    data-source-name: logdb
+
+#游戏通讯ip端口
+server:
+   config:
+      #gateIP: 118.25.3.4
+      gateIP: 127.0.0.1
+      gatePort: 9310
+      cdnUrl: http://127.0.0.1:8080/

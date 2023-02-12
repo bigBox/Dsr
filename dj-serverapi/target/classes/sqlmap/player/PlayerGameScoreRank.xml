@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerGameScoreRank">
+	<resultMap id="playerBookResultMap"
+		class="com.dj.domain.entity.player.PlayerGameScoreRank">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="roleName" column="roleName" />
+		<result property="score" column="score" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerGameScoreRank">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="roleName"> roleName = #roleName# </isNotNull>
+			<isNotNull prepend="and" property="score"> score = #score# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerGameScoreRank">
+		where roleID = #roleID#
+	</sql>
+
+	<insert id="insertPlayerGameScoreRank"
+		parameterClass="com.dj.domain.entity.player.PlayerGameScoreRank">
+		insert into player_game_score_rank(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="roleName"> roleName </isNotNull>
+		<isNotNull prepend="," property="score"> score </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="roleName"> #roleName# </isNotNull>
+		<isNotNull prepend="," property="score"> #score# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerGameScoreRank">
+		delete from player_game_score_rank
+		<include refid="queryByKeyPlayerGameScoreRank" />
+	</delete>
+
+	<update id="updatePlayerGameScoreRank"
+		parameterClass="com.dj.domain.entity.player.PlayerGameScoreRank">
+		update player_game_score_rank
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="roleName"> roleName = #roleName# </isNotNull>
+			<isNotNull prepend="," property="score"> score = #score# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerGameScoreRank" />
+	</update>
+
+	<select id="selectSinglePlayerGameScoreRank"
+		resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,score
+		,createTime
+		,updateTime
+		from
+		player_game_score_rank
+		<include refid="queryByKeyPlayerGameScoreRank" />
+	</select>
+
+	<select id="selectRecordsCountPlayerGameScoreRank"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_game_score_rank
+		<include refid="queryConditionPlayerGameScoreRank" />
+	</select>
+
+	<select id="selectMultiPagingPlayerGameScoreRank"
+		parameterClass="java.util.Map" resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,score
+		,createTime
+		,updateTime
+		from
+		player_game_score_rank
+		<include refid="queryConditionPlayerGameScoreRank" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerGameScoreRank"
+		parameterClass="java.util.Map" resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,score
+		,createTime
+		,updateTime
+		from
+		player_game_score_rank
+		<include refid="queryConditionPlayerGameScoreRank" />
+	</select>
+
+	<select id="selectAllPlayerGameScoreRank"
+		resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,score
+		,createTime
+		,updateTime
+		from
+		player_game_score_rank
+	</select>
+
+	<select id="selectSingleByParamsPlayerGameScoreRank"
+			parameterClass="java.util.Map" resultMap="playerBookResultMap">
+		select
+		id
+		,roleID
+		,roleName
+		,score
+		,createTime
+		,updateTime
+		from
+		player_game_score_rank
+		<include refid="queryConditionPlayerGameScoreRank" />
+		limit 1
+	</select>
+</sqlMap>
+	

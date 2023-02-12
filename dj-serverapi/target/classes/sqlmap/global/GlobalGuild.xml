@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GlobalGuild">
+	<resultMap id="globalGuildResultMap"
+		class="com.dj.domain.entity.global.GlobalGuild">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="level" column="level" />
+		<result property="experience" column="experience" />
+		<result property="score" column="score" />
+		<result property="summary" column="summary" />
+		<result property="curMemberNums" column="curMemberNums" />
+		<result property="innerSummary" column="innerSummary" />
+		<result property="chairman" column="chairman" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionGlobalGuild">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="chairman"> chairman = #chairman# </isNotNull>
+			<isNotNull prepend="and" property="name"> `name` = #name# </isNotNull>
+			<isNotNull prepend="and" property="level"> `level` = #level# </isNotNull>
+			<isNotNull prepend="and" property="likeId"> id like #likeId# limit 3 </isNotNull>
+			<isNotNull prepend="and" property="likeName"> `name` like #likeName# limit 3 </isNotNull>
+
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyGlobalGuild">
+		where id = #id#
+	</sql>
+
+	<insert id="insertGlobalGuild"
+		parameterClass="com.dj.domain.entity.global.GlobalGuild">
+		insert into global_guild(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="name"> `name` </isNotNull>
+		<isNotNull prepend="," property="level"> `level` </isNotNull>
+		<isNotNull prepend="," property="experience"> experience </isNotNull>
+		<isNotNull prepend="," property="score"> score </isNotNull>
+		<isNotNull prepend="," property="summary"> summary </isNotNull>
+		<isNotNull prepend="," property="curMemberNums"> curMemberNums </isNotNull>
+		<isNotNull prepend="," property="innerSummary"> innerSummary </isNotNull>
+		<isNotNull prepend="," property="chairman"> chairman </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="name"> #name# </isNotNull>
+		<isNotNull prepend="," property="level"> #level# </isNotNull>
+		<isNotNull prepend="," property="experience"> #experience# </isNotNull>
+		<isNotNull prepend="," property="score"> #score# </isNotNull>
+		<isNotNull prepend="," property="summary"> #summary# </isNotNull>
+		<isNotNull prepend="," property="curMemberNums"> #curMemberNums# </isNotNull>
+		<isNotNull prepend="," property="innerSummary"> #innerSummary# </isNotNull>
+		<isNotNull prepend="," property="chairman"> #chairman# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteGlobalGuild">
+		delete from global_guild
+		<include refid="queryByKeyGlobalGuild" />
+	</delete>
+
+	<update id="updateGlobalGuild"
+		parameterClass="com.dj.domain.entity.global.GlobalGuild">
+		update global_guild
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="name"> `name` = #name# </isNotNull>
+			<isNotNull prepend="," property="level"> `level` = #level# </isNotNull>
+			<isNotNull prepend="," property="experience"> experience = #experience#	</isNotNull>
+			<isNotNull prepend="," property="score"> score = #score# </isNotNull>
+			<isNotNull prepend="," property="summary"> summary = #summary# </isNotNull>
+			<isNotNull prepend="," property="curMemberNums"> curMemberNums = #curMemberNums# </isNotNull>
+			<isNotNull prepend="," property="innerSummary"> innerSummary = #innerSummary# </isNotNull>
+			<isNotNull prepend="," property="chairman"> chairman = #chairman# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime#	</isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime#	</isNotNull>
+		</dynamic>
+		<include refid="queryByKeyGlobalGuild" />
+	</update>
+
+	<select id="selectSingleGlobalGuild" resultMap="globalGuildResultMap">
+		select
+		*
+		from
+		global_guild
+		<include refid="queryByKeyGlobalGuild" />
+	</select>
+
+	<select id="selectRecordsCountGlobalGuild"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from global_guild
+		<include refid="queryConditionGlobalGuild" />
+	</select>
+
+	<select id="selectMultiPagingGlobalGuild"
+		parameterClass="java.util.Map" resultMap="globalGuildResultMap">
+		select
+		*
+		from
+		global_guild
+		<include refid="queryConditionGlobalGuild" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiGlobalGuild"
+		parameterClass="java.util.Map" resultMap="globalGuildResultMap">
+		select
+		*
+		from
+		global_guild
+		<include refid="queryConditionGlobalGuild" />
+	</select>
+
+	<select id="selectAllGlobalGuild" resultMap="globalGuildResultMap">
+		select
+		*
+		from
+		global_guild
+	</select>
+
+	<select id="selectSingleByParamsGlobalGuild"
+			parameterClass="java.util.Map" resultMap="globalGuildResultMap">
+		select
+		*
+		from
+		global_guild
+		<include refid="queryConditionGlobalGuild" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

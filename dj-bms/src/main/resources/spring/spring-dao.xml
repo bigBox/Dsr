@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- 配置整合 MyBatis 过程 -->
+
+	<!-- 1.数据源的配置文件-->
+	<bean id="dataSourceProperties" class="com.dj.bms.common.dao.jdbc.init.DataSourceProperties">
+		<!-- 数据库驱动程序的完全限定名 -->
+		<property name="driverClassName" value="${bms.datasource.driver-class-name}" />
+		<!-- 数据库连接池的完全限定名 -->
+		<property name="dataSourceClassName" value="${bms.datasource.dataSource-class-name}" />
+		<!-- 数据库的 JDBC URL -->
+		<property name="jdbcUrl" value="${bms.datasource.url}" />
+		<!-- 数据库的登录用户名 -->
+		<property name="username" value="${bms.datasource.username}" />
+		<!-- 数据库的登录密码 -->
+		<property name="password" value="${bms.datasource.password}" />
+		<!-- 数据源初始化的 DDL 脚本路径 -->
+		<property name="schema" value="${bms.datasource.schema}" />
+		<!-- 数据源初始化的 DML 脚本路径 -->
+		<property name="data" value="${bms.datasource.data}" />
+		<!-- 数据源初始化的模式 -->
+		<property name="initializationMode" value="${bms.datasource.initialization-mode}" />
+	</bean>
+	
+	<!-- 2.配置数据源 -->
+	<bean id="dataSource" class="com.dj.bms.common.dao.jdbc.spring.DataSourceConfiguration">
+		<property name="dataSourceProperties" ref="dataSourceProperties" />
+	</bean>
+	
+	<!-- 2.1数据源初始化监听器 -->
+	<bean id="dataSourceInitializerListener" class="com.dj.bms.common.dao.jdbc.spring.DataSourceInitializerListener" />
+	
+	<!-- 2.2发布初始化数据源事件 -->
+	<bean id="dataSourceInitializedPublisher" class="com.dj.bms.common.dao.jdbc.spring.DataSourceInitializedPublisher" >
+		<property name="dataSourceProperties" ref="dataSourceProperties" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 3.配置SqlSessionFactory对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置MyBatis全局配置文件:mybatis-config.xml -->
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+		<!-- 扫描 model 包使用别名（也就是说mapper文件里可以写简单类名，可以不用写完全限定名） -->
+		<property name="typeAliasesPackage"
+				  value="com.dj.bms.modules.collect.model,
+				  		 com.dj.bms.modules.follow.model,
+				  		 com.dj.bms.modules.integral.model,
+				  		 com.dj.bms.modules.node.model,
+				  		 com.dj.bms.modules.notice.model,
+				  		 com.dj.bms.modules.comment.model,
+				  		 com.dj.bms.modules.sys.model,
+				  		 com.dj.bms.modules.tab.model,
+				  		 com.dj.bms.modules.tag.model,
+				  		 com.dj.bms.modules.post.model,
+				  		 com.dj.bms.modules.user.model,
+				  		 com.dj.bms.modules.visit.model,
+				  		 com.dj.bms.modules.vote.model,
+				  		 com.dj.bms.modules.role.model,
+				  		 com.dj.bms.modules.permission.model,
+				  		 com.dj.bms.modules.sidebar.model,
+				  		 com.dj.bms.modules.app.model,
+				  		 com.dj.bms.modules.security.model"/>
+		<!-- 扫描sql配置文件:mapper需要的xml文件 -->
+		<property name="mapperLocations" value="classpath:mybatis/mapper/**/*.xml"/>
+	</bean>
+
+	<!-- 4.配置Mapper扫描器，自动扫描Dao接口，动态实现Dao接口，注入到spring容器中 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 注入sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!-- 给出需要扫描Dao接口包 -->
+		<property name="basePackage" value="com.dj.bms.modules.*.dao"/>
+	</bean>
+	
+</beans>

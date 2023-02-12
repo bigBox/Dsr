@@ -1,0 +1,36 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/gameLog/loginDetail.js"]}){
+
+<div class="layui-body-header">
+	<span class="layui-body-header-title">登录详情</span>
+</div>
+
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-lg12">
+			<div class="layui-card">
+				<div class="layui-card-body">
+					<div class="layui-form toolbar">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<input id="date" class="layui-input" type="text"
+									placeholder="日期" />
+							</div>
+							<div class="layui-inline">
+								<input id="roleID" class="layui-input" type="text"
+									placeholder="角色ID" />
+							</div>
+							<div class="layui-inline">
+								<button id="btnSearch" class="layui-btn icon-btn">
+									<i class="layui-icon">&#xe615;</i>搜索
+								</button>
+							</div>
+						</div>
+					</div>
+					<table class="layui-table" id="loginTable"
+						lay-filter="loginTable"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@}

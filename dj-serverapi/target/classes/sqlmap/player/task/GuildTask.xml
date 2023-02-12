@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GuildTask">
+	<resultMap id="guildTaskResultMap"
+		class="com.dj.domain.entity.player.task.GuildTask">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="guildID" column="guildID" />
+		<result property="taskID" column="taskID" />
+		<result property="index" column="index" />
+		<result property="actionType" column="actionType" />
+		<result property="actionTime" column="actionTime" />
+		<result property="actionType1" column="actionType1" />
+		<result property="actionTime1" column="actionTime1" />
+		<result property="state" column="state" />
+		<result property="first" column="first" />
+		<result property="needItem" column="needItem" />
+		<result property="curItem" column="curItem" />
+		<result property="lastLoginTime" column="lastLoginTime" />
+		<result property="cdEndTime" column="cdEndTime" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionGuildTask">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="guildID"> guildID = #guildID# </isNotNull>
+			<isNotNull prepend="and" property="taskID"> taskID = #taskID# </isNotNull>
+			<isNotNull prepend="and" property="index"> `index` = #index# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyGuildTask">
+		where id = #id#
+	</sql>
+
+	<insert id="insertGuildTask"
+		parameterClass="com.dj.domain.entity.player.task.GuildTask">
+		insert into guild_task(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="guildID"> guildID </isNotNull>
+		<isNotNull prepend="," property="taskID"> taskID </isNotNull>
+		<isNotNull prepend="," property="index"> `index` </isNotNull>
+		<isNotNull prepend="," property="actionType"> actionType </isNotNull>
+		<isNotNull prepend="," property="actionTime"> actionTime </isNotNull>
+		<isNotNull prepend="," property="actionType1"> actionType1 </isNotNull>
+		<isNotNull prepend="," property="actionTime1"> actionTime1 </isNotNull>
+		<isNotNull prepend="," property="state"> `state` </isNotNull>
+		<isNotNull prepend="," property="first"> `first` </isNotNull>
+		<isNotNull prepend="," property="needItem"> needItem </isNotNull>
+		<isNotNull prepend="," property="curItem"> curItem </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> lastLoginTime </isNotNull>
+		<isNotNull prepend="," property="cdEndTime"> cdEndTime </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="guildID"> #guildID# </isNotNull>
+		<isNotNull prepend="," property="taskID"> #taskID# </isNotNull>
+		<isNotNull prepend="," property="index"> #index# </isNotNull>
+		<isNotNull prepend="," property="actionType"> #actionType# </isNotNull>
+		<isNotNull prepend="," property="actionTime"> #actionTime# </isNotNull>
+		<isNotNull prepend="," property="actionType1"> #actionType1# </isNotNull>
+		<isNotNull prepend="," property="actionTime1"> #actionTime1# </isNotNull>
+		<isNotNull prepend="," property="state"> #state# </isNotNull>
+		<isNotNull prepend="," property="first"> #first# </isNotNull>
+		<isNotNull prepend="," property="needItem"> #needItem# </isNotNull>
+		<isNotNull prepend="," property="curItem"> #curItem# </isNotNull>
+		<isNotNull prepend="," property="lastLoginTime"> #lastLoginTime# </isNotNull>
+		<isNotNull prepend="," property="cdEndTime"> #cdEndTime# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteGuildTask">
+		delete from guild_task
+		<include refid="queryByKeyGuildTask" />
+	</delete>
+
+	<update id="updateGuildTask"
+		parameterClass="com.dj.domain.entity.player.task.GuildTask">
+		update guild_task
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="guildID"> guildID = #guildID# </isNotNull>
+			<isNotNull prepend="," property="taskID"> taskID = #taskID# </isNotNull>
+			<isNotNull prepend="," property="index"> `index` = #index# </isNotNull>
+			<isNotNull prepend="," property="actionType"> actionType = #actionType# </isNotNull>
+			<isNotNull prepend="," property="actionTime"> actionTime = #actionTime# </isNotNull>
+			<isNotNull prepend="," property="actionType1"> actionType1 = #actionType1# </isNotNull>
+			<isNotNull prepend="," property="actionTime1"> actionTime1 = #actionTime1# </isNotNull>
+			<isNotNull prepend="," property="state"> `state` = #state# </isNotNull>
+			<isNotNull prepend="," property="first"> `first` = #first# </isNotNull>
+			<isNotNull prepend="," property="needItem"> needItem = #needItem# </isNotNull>
+			<isNotNull prepend="," property="curItem"> curItem = #curItem# </isNotNull>
+			<isNotNull prepend="," property="lastLoginTime"> lastLoginTime = #lastLoginTime# </isNotNull>
+			<isNotNull prepend="," property="cdEndTime"> cdEndTime = #cdEndTime# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyGuildTask" />
+	</update>
+
+	<select id="selectSingleGuildTask" resultMap="guildTaskResultMap">
+		select
+		id
+		,roleID
+		,guildID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,cdEndTime
+		,createTime
+		,updateTime
+		from
+		guild_task
+		<include refid="queryByKeyGuildTask" />
+	</select>
+
+	<select id="selectRecordsCountGuildTask"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from guild_task
+		<include refid="queryConditionGuildTask" />
+	</select>
+
+	<select id="selectMultiPagingGuildTask"
+		parameterClass="java.util.Map" resultMap="guildTaskResultMap">
+		select
+		id
+		,roleID
+		,guildID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,cdEndTime
+		,createTime
+		,updateTime
+		from
+		guild_task
+		<include refid="queryConditionGuildTask" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiGuildTask"
+		parameterClass="java.util.Map" resultMap="guildTaskResultMap">
+		select
+		id
+		,roleID
+		,guildID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,cdEndTime
+		,createTime
+		,updateTime
+		from
+		guild_task
+		<include refid="queryConditionGuildTask" />
+	</select>
+
+	<select id="selectAllGuildTask" resultMap="guildTaskResultMap">
+		select
+		id
+		,roleID
+		,guildID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,cdEndTime
+		,createTime
+		,updateTime
+		from
+		guild_task
+	</select>
+
+	<select id="selectSingleByParamsGuildTask"
+		parameterClass="java.util.Map" resultMap="guildTaskResultMap">
+		select
+		id
+		,roleID
+		,guildID
+		,taskID
+		,`index`
+		,actionType
+		,actionTime
+		,actionType1
+		,actionTime1
+		,`state`
+		,`first`
+		,needItem
+		,curItem
+		,lastLoginTime
+		,cdEndTime
+		,createTime
+		,updateTime
+		from
+		guild_task
+		<include refid="queryConditionGuildTask" />
+		and `state` != 3
+		limit 1
+	</select>
+
+</sqlMap>
+	

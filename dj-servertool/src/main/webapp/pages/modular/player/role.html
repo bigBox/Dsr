@@ -1,0 +1,68 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/player/role.js"]}){
+
+<div class="layui-body-header">
+	<span class="layui-body-header-title">玩家角色</span>
+</div>
+
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-lg12">
+			<div class="layui-card">
+				<div class="layui-card-body">
+					<div class="layui-form toolbar">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<input id="p_roleID" class="layui-input" type="text"
+									placeholder="角色ID" />
+							</div>
+							<div class="layui-inline">
+								<button id="btnSearch" class="layui-btn icon-btn">
+									<i class="layui-icon">&#xe615;</i>搜索
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-header">基本信息</div>
+					<div class="layui-card-body">
+						<table class="layui-table layui-text">
+							<colgroup>
+								<col width="100">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<td style="background-color: #f2f2f2; width: 60px">角色ID</td>
+									<td id="roleID"></td>
+									<td style="background-color: #f2f2f2; width: 60px">名称</td>
+									<td style="width: 30%"><input type="text" id="roleName"
+										class="layui-input" style="width: 200px" /></td>
+									<td style="background-color: #f2f2f2; width: 60px">等级</td>
+									<td id="level"></td>
+								</tr>
+								<tr>
+									<td style="background-color: #f2f2f2; width: 60px">金币</td>
+									<td id="gold"></td>
+									<td style="background-color: #f2f2f2; width: 60px">钻石</td>
+									<td id="diamond"></td>
+									<td style="background-color: #f2f2f2; width: 60px">生态值</td>
+									<td id="ecology"></td>
+								</tr>
+								<tr>
+									<td style="background-color: #f2f2f2; width: 60px">商会</td>
+									<td id="guildId"></td>
+									<td style="background-color: #f2f2f2; width: 60px">个人签名</td>
+									<td id="signature"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div style="text-align: right">
+							<button id="btnSave" class="layui-btn icon-btn">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@}

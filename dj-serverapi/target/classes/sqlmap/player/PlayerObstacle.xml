@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerObstacle">
+	<resultMap id="playerObstacleResultMap"
+		class="com.dj.domain.entity.player.PlayerObstacle">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="obstacleID" column="obstacleID" />
+		<result property="isOpen" column="isOpen" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerObstacle">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="obstacleID"> obstacleID = #obstacleID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerObstacle">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerObstacle"
+		parameterClass="com.dj.domain.entity.player.PlayerObstacle">
+		insert into player_obstacle(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="obstacleID"> obstacleID </isNotNull>
+		<isNotNull prepend="," property="isOpen"> isOpen </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="obstacleID"> #obstacleID# </isNotNull>
+		<isNotNull prepend="," property="isOpen"> #isOpen# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerObstacle">
+		delete from player_obstacle
+		<include refid="queryByKeyPlayerObstacle" />
+	</delete>
+
+	<update id="updatePlayerObstacle"
+		parameterClass="com.dj.domain.entity.player.PlayerObstacle">
+		update player_obstacle
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="obstacleID"> obstacleID = #obstacleID# </isNotNull>
+			<isNotNull prepend="," property="isOpen"> isOpen = #isOpen# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerObstacle" />
+	</update>
+
+	<select id="selectSinglePlayerObstacle"
+		resultMap="playerObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		player_obstacle
+		<include refid="queryByKeyPlayerObstacle" />
+	</select>
+
+	<select id="selectRecordsCountPlayerObstacle"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_obstacle
+		<include refid="queryConditionPlayerObstacle" />
+	</select>
+
+	<select id="selectMultiPagingPlayerObstacle"
+		parameterClass="java.util.Map" resultMap="playerObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		player_obstacle
+		<include refid="queryConditionPlayerObstacle" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerObstacle"
+		parameterClass="java.util.Map" resultMap="playerObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		player_obstacle
+		<include refid="queryConditionPlayerObstacle" />
+	</select>
+
+	<select id="selectAllPlayerObstacle" resultMap="playerObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		player_obstacle
+	</select>
+
+	<select id="selectSingleByParamsPlayerObstacle"
+			parameterClass="java.util.Map" resultMap="playerObstacleResultMap">
+		select
+		id
+		,roleID
+		,obstacleID
+		,isOpen
+		,createTime
+		,updateTime
+		from
+		player_obstacle
+		<include refid="queryConditionPlayerObstacle" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerVerify">
+	<resultMap id="playerVerifyResultMap"
+		class="com.dj.domain.entity.player.PlayerVerify">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="verifyID" column="verifyID" />
+		<result property="verifyRoleID" column="verifyRoleID" />
+		<result property="verifyFinishTime" column="verifyFinishTime" />
+		<result property="resultItem" column="resultItem" />
+		<result property="resultRep" column="resultRep" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerVerify">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="verifyID"> verifyID = #verifyID# </isNotNull>
+			<isNotNull prepend="and" property="verifyRoleID"> verifyRoleID = #verifyRoleID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerVerify">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerVerify"
+		parameterClass="com.dj.domain.entity.player.PlayerVerify">
+		insert into player_verify(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="verifyID"> verifyID </isNotNull>
+		<isNotNull prepend="," property="verifyRoleID"> verifyRoleID </isNotNull>
+		<isNotNull prepend="," property="verifyFinishTime"> verifyFinishTime </isNotNull>
+		<isNotNull prepend="," property="resultItem"> resultItem </isNotNull>
+		<isNotNull prepend="," property="resultRep"> resultRep </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="verifyID"> #verifyID# </isNotNull>
+		<isNotNull prepend="," property="verifyRoleID"> #verifyRoleID# </isNotNull>
+		<isNotNull prepend="," property="verifyFinishTime"> #verifyFinishTime# </isNotNull>
+		<isNotNull prepend="," property="resultItem"> #resultItem# </isNotNull>
+		<isNotNull prepend="," property="resultRep"> #resultRep# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerVerify">
+		delete from player_verify
+		<include refid="queryByKeyPlayerVerify" />
+	</delete>
+
+	<update id="updatePlayerVerify"
+		parameterClass="com.dj.domain.entity.player.PlayerVerify">
+		update player_verify
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="verifyID"> verifyID = #verifyID# </isNotNull>
+			<isNotNull prepend="," property="verifyRoleID"> verifyRoleID = #verifyRoleID# </isNotNull>
+			<isNotNull prepend="," property="verifyFinishTime"> verifyFinishTime = #verifyFinishTime# </isNotNull>
+			<isNotNull prepend="," property="resultItem"> resultItem = #resultItem# </isNotNull>
+			<isNotNull prepend="," property="resultRep"> resultRep = #resultRep# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerVerify" />
+	</update>
+
+	<select id="selectSinglePlayerVerify" resultMap="playerVerifyResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyFinishTime
+		,resultItem
+		,resultRep
+		,createTime
+		,updateTime
+		from
+		player_verify
+		<include refid="queryByKeyPlayerVerify" />
+	</select>
+
+	<select id="selectRecordsCountPlayerVerify"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_verify
+		<include refid="queryConditionPlayerVerify" />
+	</select>
+
+	<select id="selectMultiPagingPlayerVerify"
+		parameterClass="java.util.Map" resultMap="playerVerifyResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyFinishTime
+		,resultItem
+		,resultRep
+		,createTime
+		,updateTime
+		from
+		player_verify
+		<include refid="queryConditionPlayerVerify" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerVerify"
+		parameterClass="java.util.Map" resultMap="playerVerifyResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyFinishTime
+		,resultItem
+		,resultRep
+		,createTime
+		,updateTime
+		from
+		player_verify
+		<include refid="queryConditionPlayerVerify" />
+	</select>
+
+	<select id="selectAllPlayerVerify" resultMap="playerVerifyResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyFinishTime
+		,resultItem
+		,resultRep
+		,createTime
+		,updateTime
+		from
+		player_verify
+	</select>
+
+	<select id="selectSingleByParamsPlayerVerify"
+			parameterClass="java.util.Map" resultMap="playerVerifyResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyFinishTime
+		,resultItem
+		,resultRep
+		,createTime
+		,updateTime
+		from
+		player_verify
+		<include refid="queryConditionPlayerVerify" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

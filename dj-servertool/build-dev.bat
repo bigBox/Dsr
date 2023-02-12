@@ -1,0 +1,1 @@
+mvn -f pom-dev.xml clean install

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.dj.servertool.module.mapper.LogLoginMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="com.dj.domain.log.LogLogin">
+		<id column="id" property="id" />
+		<result column="roleID" property="roleID" />
+		<result column="account" property="account" />
+		<result column="password" property="password" />
+		<result column="ip" property="ip" />
+		<result column="type" property="type" />
+		<result column="logTime" property="logTime" />
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, roleID, account, password, `ip`, type, logTime
+	</sql>
+
+	<select id="list" resultType="map">
+		select
+		<include refid="Base_Column_List"></include>
+		from log_login
+		<if test="roleID != null and roleID != ''">
+			where roleID = #{roleID}
+		</if>
+		order by logTime DESC
+	</select>
+
+</mapper>

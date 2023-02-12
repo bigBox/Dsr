@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerCollection">
+	<resultMap id="playerCollectionResultMap"
+		class="com.dj.domain.entity.player.PlayerCollection">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="collectionID" column="collectionID" />
+		<result property="reward" column="reward" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerCollection">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="collectionID"> collectionID = #collectionID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerCollection">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerCollection"
+		parameterClass="com.dj.domain.entity.player.PlayerCollection">
+		insert into player_collection(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="collectionID"> collectionID </isNotNull>
+		<isNotNull prepend="," property="reward"> reward </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="collectionID"> #collectionID# </isNotNull>
+		<isNotNull prepend="," property="reward"> #reward# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerCollection">
+		delete from player_collection
+		<include refid="queryByKeyPlayerCollection" />
+	</delete>
+
+	<update id="updatePlayerCollection"
+		parameterClass="com.dj.domain.entity.player.PlayerCollection">
+		update player_collection
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="collectionID"> collectionID = #collectionID# </isNotNull>
+			<isNotNull prepend="," property="reward"> reward = #reward# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerCollection" />
+	</update>
+
+	<select id="selectSinglePlayerCollection"
+		resultMap="playerCollectionResultMap">
+		select
+		id
+		,roleID
+		,collectionID
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_collection
+		<include refid="queryByKeyPlayerCollection" />
+	</select>
+
+	<select id="selectRecordsCountPlayerCollection"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_collection
+		<include refid="queryConditionPlayerCollection" />
+	</select>
+
+	<select id="selectMultiPagingPlayerCollection"
+		parameterClass="java.util.Map" resultMap="playerCollectionResultMap">
+		select
+		id
+		,roleID
+		,collectionID
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_collection
+		<include refid="queryConditionPlayerCollection" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerCollection"
+		parameterClass="java.util.Map" resultMap="playerCollectionResultMap">
+		select
+		id
+		,roleID
+		,collectionID
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_collection
+		<include refid="queryConditionPlayerCollection" />
+	</select>
+
+	<select id="selectAllPlayerCollection"
+		resultMap="playerCollectionResultMap">
+		select
+		id
+		,roleID
+		,collectionID
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_collection
+	</select>
+
+	<select id="selectSingleByParamsPlayerCollection"
+			parameterClass="java.util.Map" resultMap="playerCollectionResultMap">
+		select
+		id
+		,roleID
+		,collectionID
+		,reward
+		,createTime
+		,updateTime
+		from
+		player_collection
+		<include refid="queryConditionPlayerCollection" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerFriend">
+	<resultMap id="playerFriendResultMap"
+		class="com.dj.domain.entity.player.PlayerFriend">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="friendID" column="friendID" />
+		<result property="friendType" column="friendType" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerFriend">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="friendID"> friendID = #friendID# </isNotNull>
+			<isNotNull prepend="and" property="friendType"> friendType = #friendType# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerFriend">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerFriend"
+		parameterClass="com.dj.domain.entity.player.PlayerFriend">
+		insert into player_friend(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="friendID"> friendID </isNotNull>
+		<isNotNull prepend="," property="friendType"> friendType </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="friendID"> #friendID# </isNotNull>
+		<isNotNull prepend="," property="friendType"> #friendType# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerFriend">
+		delete from player_friend
+		<include refid="queryByKeyPlayerFriend" />
+	</delete>
+
+	<update id="updatePlayerFriend"
+		parameterClass="com.dj.domain.entity.player.PlayerFriend">
+		update player_friend
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="friendID"> friendID = #friendID# </isNotNull>
+			<isNotNull prepend="," property="friendType"> friendType = #friendType# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerFriend" />
+	</update>
+
+	<select id="selectSinglePlayerFriend" resultMap="playerFriendResultMap">
+		select
+		id
+		,roleID
+		,friendID
+		,friendType
+		,createTime
+		,updateTime
+		from player_friend
+		<include refid="queryByKeyPlayerFriend" />
+	</select>
+
+	<select id="selectRecordsCountPlayerFriend"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_friend
+		<include refid="queryConditionPlayerFriend" />
+	</select>
+
+	<select id="selectMultiPagingPlayerFriend"
+		parameterClass="java.util.Map" resultMap="playerFriendResultMap">
+		select
+		id
+		,roleID
+		,friendID
+		,friendType
+		,createTime
+		,updateTime
+		from player_friend
+		<include refid="queryConditionPlayerFriend" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerFriend"
+		parameterClass="java.util.Map" resultMap="playerFriendResultMap">
+		select
+		id
+		,roleID
+		,friendID
+		,friendType
+		,createTime
+		,updateTime
+		from player_friend
+		<include refid="queryConditionPlayerFriend" />
+	</select>
+
+	<select id="selectAllPlayerFriend" resultMap="playerFriendResultMap">
+		select
+		id
+		,roleID
+		,friendID
+		,friendType
+		,createTime
+		,updateTime
+		from player_friend
+	</select>
+
+	<select id="selectSingleByParamsPlayerFriend"
+			parameterClass="java.util.Map" resultMap="playerFriendResultMap">
+		select
+		id
+		,roleID
+		,friendID
+		,friendType
+		,createTime
+		,updateTime
+		from player_friend
+		<include refid="queryConditionPlayerFriend" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

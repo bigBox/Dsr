@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RobotVerifyHistory">
+	<resultMap id="robotVerifyHistoryResultMap"
+		class="com.dj.domain.entity.robot.RobotVerifyHistory">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="verifyID" column="verifyID" />
+		<result property="verifyRoleID" column="verifyRoleID" />
+		<result property="verifyTime" column="verifyTime" />
+		<result property="verifyCD" column="verifyCD" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionRobotVerifyHistory">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="verifyID"> verifyID = #verifyID# </isNotNull>
+			<isNotNull prepend="and" property="verifyRoleID"> verifyRoleID = #verifyRoleID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyRobotVerifyHistory">
+		where id = #id#
+	</sql>
+
+	<insert id="insertRobotVerifyHistory"
+		parameterClass="com.dj.domain.entity.robot.RobotVerifyHistory">
+		insert into robot_verify_history(
+		<isNotNull prepend="" property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="verifyID"> verifyID </isNotNull>
+		<isNotNull prepend="," property="verifyRoleID"> verifyRoleID </isNotNull>
+		<isNotNull prepend="," property="verifyTime"> verifyTime </isNotNull>
+		<isNotNull prepend="," property="verifyCD"> verifyCD </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="verifyID"> #verifyID# </isNotNull>
+		<isNotNull prepend="," property="verifyRoleID"> #verifyRoleID# </isNotNull>
+		<isNotNull prepend="," property="verifyTime"> #verifyTime# </isNotNull>
+		<isNotNull prepend="," property="verifyCD"> #verifyCD# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deleteRobotVerifyHistory">
+		delete from robot_verify_history
+		<include refid="queryByKeyRobotVerifyHistory" />
+	</delete>
+
+	<update id="updateRobotVerifyHistory"
+		parameterClass="com.dj.domain.entity.robot.RobotVerifyHistory">
+		update robot_verify_history
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="verifyID"> verifyID = #verifyID# </isNotNull>
+			<isNotNull prepend="," property="verifyRoleID"> verifyRoleID = #verifyRoleID# </isNotNull>
+			<isNotNull prepend="," property="verifyTime"> verifyTime = #verifyTime# </isNotNull>
+			<isNotNull prepend="," property="verifyCD"> verifyCD = #verifyCD# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyRobotVerifyHistory" />
+	</update>
+
+	<select id="selectSingleRobotVerifyHistory" resultMap="robotVerifyHistoryResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyTime
+		,verifyCD
+		,createTime
+		,updateTime
+		from
+		robot_verify_history
+		<include refid="queryByKeyRobotVerifyHistory" />
+	</select>
+
+	<select id="selectRecordsCountRobotVerifyHistory"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from robot_verify_history
+		<include refid="queryConditionRobotVerifyHistory" />
+	</select>
+
+	<select id="selectMultiPagingRobotVerifyHistory"
+		parameterClass="java.util.Map" resultMap="robotVerifyHistoryResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyTime
+		,verifyCD
+		,createTime
+		,updateTime
+		from
+		robot_verify_history
+		<include refid="queryConditionRobotVerifyHistory" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiRobotVerifyHistory"
+		parameterClass="java.util.Map" resultMap="robotVerifyHistoryResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyTime
+		,verifyCD
+		,createTime
+		,updateTime
+		from
+		robot_verify_history
+		<include refid="queryConditionRobotVerifyHistory" />
+	</select>
+
+	<select id="selectAllRobotVerifyHistory" resultMap="robotVerifyHistoryResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyTime
+		,verifyCD
+		,createTime
+		,updateTime
+		from
+		robot_verify_history
+	</select>
+
+	<select id="selectSingleByParamsRobotVerifyHistory"
+			parameterClass="java.util.Map" resultMap="robotVerifyHistoryResultMap">
+		select
+		id
+		,roleID
+		,verifyID
+		,verifyRoleID
+		,verifyTime
+		,verifyCD
+		,createTime
+		,updateTime
+		from
+		robot_verify_history
+		<include refid="queryConditionRobotVerifyHistory" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

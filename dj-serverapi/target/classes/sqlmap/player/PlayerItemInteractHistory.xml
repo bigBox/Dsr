@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerItemInteractHistory">
+	<resultMap id="playerItemInteractHistoryResultMap"
+		class="com.dj.domain.entity.player.PlayerItemInteractHistory">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="itemID" column="itemID" />
+		<result property="itemCount" column="itemCount" />
+		<result property="interactRoleID" column="interactRoleID" />
+		<result property="ps" column="ps" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerItemInteractHistory">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerItemInteractHistory">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerItemInteractHistory"
+		parameterClass="com.dj.domain.entity.player.PlayerItemInteractHistory">
+		insert into player_item_interact_history(
+		<isNotNull prepend="" property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="itemCount"> itemCount </isNotNull>
+		<isNotNull prepend="," property="interactRoleID"> interactRoleID </isNotNull>
+		<isNotNull prepend="," property="ps"> ps </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="itemCount"> #itemCount# </isNotNull>
+		<isNotNull prepend="," property="interactRoleID"> #interactRoleID# </isNotNull>
+		<isNotNull prepend="," property="ps"> #ps# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerItemInteractHistory">
+		delete from player_item_interact_history
+		<include refid="queryByKeyPlayerItemInteractHistory" />
+	</delete>
+
+	<update id="updatePlayerItemInteractHistory"
+		parameterClass="com.dj.domain.entity.player.PlayerItemInteractHistory">
+		update player_item_interact_history
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="itemCount"> itemCount = #itemCount# </isNotNull>
+			<isNotNull prepend="," property="interactRoleID"> interactRoleID = #interactRoleID# </isNotNull>
+			<isNotNull prepend="," property="ps"> ps = #ps# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerItemInteractHistory" />
+	</update>
+
+	<select id="selectSinglePlayerItemInteractHistory" resultMap="playerItemInteractHistoryResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,interactRoleID
+		,ps
+		,createTime
+		,updateTime
+		from
+		player_item_interact_history
+		<include refid="queryByKeyPlayerItemInteractHistory" />
+	</select>
+
+	<select id="selectRecordsCountPlayerItemInteractHistory"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_item_interact_history
+		<include refid="queryConditionPlayerItemInteractHistory" />
+	</select>
+
+	<select id="selectMultiPagingPlayerItemInteractHistory"
+		parameterClass="java.util.Map" resultMap="playerItemInteractHistoryResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,interactRoleID
+		,ps
+		,createTime
+		,updateTime
+		from
+		player_item_interact_history
+		<include refid="queryConditionPlayerItemInteractHistory" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerItemInteractHistory"
+		parameterClass="java.util.Map" resultMap="playerItemInteractHistoryResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,interactRoleID
+		,ps
+		,createTime
+		,updateTime
+		from
+		player_item_interact_history
+		<include refid="queryConditionPlayerItemInteractHistory" />
+	</select>
+
+	<select id="selectAllPlayerItemInteractHistory" resultMap="playerItemInteractHistoryResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,interactRoleID
+		,ps
+		,createTime
+		,updateTime
+		from
+		player_item_interact_history
+	</select>
+
+	<select id="selectSingleByParamsPlayerItemInteractHistory"
+			parameterClass="java.util.Map" resultMap="playerItemInteractHistoryResultMap">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,interactRoleID
+		,ps
+		,createTime
+		,updateTime
+		from
+		player_item_interact_history
+		<include refid="queryConditionPlayerItemInteractHistory" />
+		limit 1
+	</select>
+
+</sqlMap>
+	

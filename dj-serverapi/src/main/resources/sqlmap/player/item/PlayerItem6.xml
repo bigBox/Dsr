@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PlayerItem6">
+	<resultMap id="playerItemResultMap6"
+		class="com.dj.domain.entity.player.item.PlayerItem6">
+		<result property="id" column="id" />
+		<result property="roleID" column="roleID" />
+		<result property="itemID" column="itemID" />
+		<result property="itemCount" column="itemCount" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="queryConditionPlayerItem6">
+		<dynamic prepend="where">
+			<isNotNull prepend="and" property="id"> id = #id# </isNotNull>
+			<isNotNull prepend="and" property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="and" property="itemID"> itemID = #itemID# </isNotNull>
+		</dynamic>
+	</sql>
+
+	<sql id="queryByKeyPlayerItem6">
+		where id = #id#
+	</sql>
+
+	<insert id="insertPlayerItem6"
+		parameterClass="com.dj.domain.entity.player.item.PlayerItem6">
+		insert into player_item6(
+		<isNotNull prepend="" property="id"> id </isNotNull>
+		<isNotNull prepend="," property="roleID"> roleID </isNotNull>
+		<isNotNull prepend="," property="itemID"> itemID </isNotNull>
+		<isNotNull prepend="," property="itemCount"> itemCount </isNotNull>
+		<isNotNull prepend="," property="createTime"> createTime </isNotNull>
+		<isNotNull prepend="," property="updateTime"> updateTime </isNotNull>
+		)
+		values(
+		<isNotNull prepend="" property="id"> #id# </isNotNull>
+		<isNotNull prepend="," property="roleID"> #roleID# </isNotNull>
+		<isNotNull prepend="," property="itemID"> #itemID# </isNotNull>
+		<isNotNull prepend="," property="itemCount"> #itemCount# </isNotNull>
+		<isNotNull prepend="," property="createTime"> #createTime# </isNotNull>
+		<isNotNull prepend="," property="updateTime"> #updateTime# </isNotNull>
+		)
+	</insert>
+
+	<delete id="deletePlayerItem6">
+		delete from player_item6
+		<include refid="queryByKeyPlayerItem6" />
+	</delete>
+
+	<update id="updatePlayerItem6"
+		parameterClass="com.dj.domain.entity.player.item.PlayerItem6">
+		update player_item6
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="roleID"> roleID = #roleID# </isNotNull>
+			<isNotNull prepend="," property="itemID"> itemID = #itemID# </isNotNull>
+			<isNotNull prepend="," property="itemCount"> itemCount = #itemCount# </isNotNull>
+			<isNotNull prepend="," property="createTime"> createTime = #createTime# </isNotNull>
+			<isNotNull prepend="," property="updateTime"> updateTime = #updateTime# </isNotNull>
+		</dynamic>
+		<include refid="queryByKeyPlayerItem6" />
+	</update>
+
+	<select id="selectSinglePlayerItem6" resultMap="playerItemResultMap6">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,createTime
+		,updateTime
+		from player_item6
+		<include refid="queryByKeyPlayerItem6" />
+	</select>
+
+	<select id="selectRecordsCountPlayerItem6"
+		parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(*) from player_item6
+		<include refid="queryConditionPlayerItem6" />
+	</select>
+
+	<select id="selectMultiPagingPlayerItem6"
+		parameterClass="java.util.Map" resultMap="playerItemResultMap6">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,createTime
+		,updateTime
+		from player_item6
+		<include refid="queryConditionPlayerItem6" />
+		limit #start#,#pagesize#
+	</select>
+
+	<select id="selectMultiPlayerItem6"
+		parameterClass="java.util.Map" resultMap="playerItemResultMap6">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,createTime
+		,updateTime
+		from player_item6
+		<include refid="queryConditionPlayerItem6" />
+	</select>
+
+	<select id="selectAllPlayerItem6" resultMap="playerItemResultMap6">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,createTime
+		,updateTime
+		from player_item6
+	</select>
+
+	<select id="selectSingleByParamsPlayerItem6"
+		parameterClass="java.util.Map" resultMap="playerItemResultMap6">
+		select
+		id
+		,roleID
+		,itemID
+		,itemCount
+		,createTime
+		,updateTime
+		from player_item6
+		<include refid="queryConditionPlayerItem6" />
+		limit 1
+	</select>
+
+</sqlMap>
+	
